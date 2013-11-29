@@ -9,7 +9,11 @@
 todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage, filterFilter) {
     $scope.todos = [];
     var updateTodos = function() {
-        todoStorage.query(function(todos) {
+        var query = ($location.path() === '/active') ?
+        '{ completed: false }' : ($location.path() === '/completed') ?
+        '{ completed: true }' : null;
+
+        todoStorage.query(query, function(todos) {
             $scope.todos = todos;
         });
     }
@@ -29,10 +33,10 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
 
 	$scope.location = $location;
 
-	$scope.$watch('location.path()', function (path) {
-		$scope.statusFilter = (path === '/active') ?
-			{ completed: false } : (path === '/completed') ?
-			{ completed: true } : null;
+	$scope.$watch('location.path()', function (newValue, oldValue) {
+        if (newValue != oldValue) {
+            updateTodos();
+        }
 	});
 
 	$scope.addTodo = function () {

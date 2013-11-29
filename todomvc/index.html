@@ -15,11 +15,11 @@
 					<input id="new-todo" placeholder="What needs to be done?" ng-model="newTodo" autofocus>
 				</form>
 			</header>
-			<section id="main" ng-show="todos.length" ng-cloak>
+			<section id="main" ng-cloak>
 				<input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul id="todo-list">
-					<li ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+					<li ng-repeat="todo in todos track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="todo.completed" data-ng-change="updateTodo(todo)">
 							<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
@@ -31,7 +31,7 @@
 					</li>
 				</ul>
 			</section>
-			<footer id="footer" ng-show="todos.length" ng-cloak>
+            <footer id="footer" ng-cloak>
 				<span id="todo-count"><strong>{{remainingCount}}</strong>
 					<ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
 				</span>

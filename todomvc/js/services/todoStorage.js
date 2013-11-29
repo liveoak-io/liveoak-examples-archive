@@ -8,25 +8,18 @@ todomvc.factory('todoStorage', function ($cacheFactory, $http) {
     var baseUrl = 'http://localhost:8080';
 
     var resource = {
-        query: function (success) {
-            $http.get(baseUrl + '/storage/todos').success(function (data) {
-                    var members = data._members;
-                    var tasks = [];
-                    if (members) {
-                        for (var i = 0; i < members.length; i++) {
-                            $http.get(baseUrl + members[i].href).success(function (task) {
-                                tasks.push(task);
-                                if (tasks.length == members.length) {
-                                    console.debug('query');
-                                    success && success(tasks);
-                                }
-                            });
-                        }
-                    } else {
-                        success && success([]);
-                    }
+        query: function (query, success) {
+            var url = baseUrl + '/storage/todos?expand=*';
+            console.debug('query = ' + query);
+            if (query) {
+                url += '&q=' + query;
+            }
+            $http.get(url).success(function (data) {
+                if (!data._members) {
+                    data._members = [];
                 }
-            );
+                success && success(data._members);
+            });
         },
 
         save: function (todo, success) {
@@ -39,10 +32,10 @@ todomvc.factory('todoStorage', function ($cacheFactory, $http) {
 
         update: function (todo, success) {
             console.debug('update ' + todo.title);
-            $http.put(baseUrl + '/storage/todos/' + todo.id, todo).success(function () {
-                console.debug('updated ' + todo.title);
-                success && success(todo);
-            });
+//            $http.put(baseUrl + '/storage/todos/' + todo.id, todo).success(function () {
+//                console.debug('updated ' + todo.title);
+//                success && success(todo);
+//            });
         },
 
         remove: function (todo, success) {
@@ -55,8 +48,8 @@ todomvc.factory('todoStorage', function ($cacheFactory, $http) {
     }
 
     return {
-        query: function (success) {
-            return resource.query(success);
+        query: function (query, success) {
+            return resource.query(query, success);
         },
 
         remove: function (todo, success) {
