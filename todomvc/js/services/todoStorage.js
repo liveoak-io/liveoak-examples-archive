@@ -32,10 +32,13 @@ todomvc.factory('todoStorage', function ($cacheFactory, $http) {
 
         update: function (todo, success) {
             console.debug('update ' + todo.title);
-//            $http.put(baseUrl + '/storage/todos/' + todo.id, todo).success(function () {
-//                console.debug('updated ' + todo.title);
-//                success && success(todo);
-//            });
+            console.debug(todo);
+            var t = angular.copy(todo);
+            delete t.self;
+            $http.put(baseUrl + '/storage/todos/' + todo.id, t).success(function () {
+                console.debug('updated ' + todo.title);
+                success && success(todo);
+            });
         },
 
         remove: function (todo, success) {
