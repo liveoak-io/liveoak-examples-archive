@@ -60,7 +60,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
         todoStorage.save({
             title: newTodo,
             completed: false,
-            user: Auth.username
+            user: $scope.username
         }, updateTodos);
 
         $scope.newTodo = '';

@@ -40,7 +40,7 @@
             <br/>
             <label for="admin">Become admin</label><br/><input id="admin" type="checkbox" data-ng-model="admin"><br/>
             <br/>
-            <a href="#" data-ng-click="refresh()">Refresh</a>
+            <a href="#" data-ng-click="refresh()">Update</a>
         </div>
 		<section id="todoapp">
 			<header id="header">
@@ -57,6 +57,7 @@
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="todo.completed" data-ng-change="updateTodo(todo)">
 							<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
+                            <span data-ng-show="admin" style="float: right; font-size: 10px; right: 10px; position: relative; top: -50px;">User: {{todo.user}}</span>
 							<button class="destroy" ng-click="removeTodo(todo)"></button>
 						</div>
 						<form ng-submit="doneEditing(todo)">
