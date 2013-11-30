@@ -6,18 +6,21 @@
  * - retrieves and persists the model via the todoStorage service
  * - exposes the model to the template and provides event handlers
  */
-todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage, filterFilter) {
+todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage, filterFilter, Auth) {
     $scope.todos = [];
     var updateTodos = function() {
         var query = ($location.path() === '/active') ?
-        '{ completed: false }' : ($location.path() === '/completed') ?
-        '{ completed: true }' : null;
+        { completed: false } : ($location.path() === '/completed') ?
+        { completed: true } : {};
+        query.user = Auth.username;
 
         todoStorage.query(query, function(todos) {
             $scope.todos = todos;
         });
     }
     updateTodos();
+
+    $scope.auth = Auth;
 
 	$scope.newTodo = '';
 	$scope.editedTodo = null;
@@ -47,7 +50,8 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
 
         todoStorage.save({
             title: newTodo,
-            completed: false
+            completed: false,
+            user: Auth.username
         }, updateTodos);
 
         $scope.newTodo = '';

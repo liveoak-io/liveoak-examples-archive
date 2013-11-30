@@ -4,15 +4,14 @@
 /**
  * Services that persists and retrieves TODOs from localStorage
  */
-todomvc.factory('todoStorage', function ($cacheFactory, $http) {
+todomvc.factory('todoStorage', function ($cacheFactory, $http, Auth) {
     var baseUrl = 'http://localhost:8080';
-
     var resource = {
         query: function (query, success) {
             var url = baseUrl + '/storage/todos?expand=*';
             console.debug('query = ' + query);
             if (query) {
-                url += '&q=' + query;
+                url += '&q=' + JSON.stringify(query);
             }
             $http.get(url).success(function (data) {
                 if (!data._members) {

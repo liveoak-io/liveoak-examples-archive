@@ -1,0 +1,24 @@
+{
+    "name": "test-app",
+    "enabled": true,
+    "webOrigins": [ "http://localhost:8080" ],
+    "redirectUris": [ "http://localhost:8080/app/index.html" ],
+    "credentials": [
+        {
+            "type": "password",
+            "value": "password"
+        }
+    ],
+    "defaultRoles": [ "user", "storage" ],
+    "roles": [
+        {
+            "name": "user"
+        },
+        {
+            "name": "storage"
+        },
+        {
+            "name": "admin"
+        }
+    ]
+}
