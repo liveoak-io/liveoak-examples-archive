@@ -19,10 +19,29 @@
                 color: #b3b3b3;
                 text-decoration: none;
             }
+
+            #hack {
+                border: 1px solid #b3b3b3;
+                background-color: #fff;
+                position: absolute;
+                padding: 10px;
+                right: 20px;
+                font-size: 12px;
+                top: 50px;
+                color: #b3b3b3;
+            }
         </style>
 	</head>
 	<body ng-controller="TodoCtrl" ng-cloak>
-        <span id="user"><span style="margin-right: 20px;">{{auth.username}}</span><a href="#" data-ng-click="auth.logout()">logout</a></span>
+        <span id="user"><span style="margin-right: 20px;">{{auth.username}} ({{auth.hasResourceRole('admin') ? 'admin' : 'user'}})</span><a href="#" data-ng-click="auth.logout()">logout</a></span>
+        <div id="hack">
+            <h2>Attempt evil!</h2>
+            <label for="username">Change user</label><br/><input id="username" type="text" data-ng-model="username"><br/>
+            <br/>
+            <label for="admin">Become admin</label><br/><input id="admin" type="checkbox" data-ng-model="admin"><br/>
+            <br/>
+            <a href="#" data-ng-click="refresh()">Refresh</a>
+        </div>
 		<section id="todoapp">
 			<header id="header">
 				<h1>todos</h1>

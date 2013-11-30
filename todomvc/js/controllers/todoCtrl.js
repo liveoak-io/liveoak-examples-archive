@@ -11,18 +11,27 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
     var updateTodos = function() {
         var query = ($location.path() === '/active') ?
         { completed: false } : ($location.path() === '/completed') ?
-        { completed: true } : {};
-        query.user = Auth.username;
+        { completed: true } : null;
+
+        if (!$scope.admin) {
+            if (!query) {
+                query = {};
+            }
+            query.user = $scope.username;
+        }
 
         todoStorage.query(query, function(todos) {
             $scope.todos = todos;
         });
     }
-    updateTodos();
 
     $scope.auth = Auth;
+    $scope.username = Auth.username;
+    $scope.admin = Auth.hasResourceRole('admin');
 
-	$scope.newTodo = '';
+    updateTodos();
+
+    $scope.newTodo = '';
 	$scope.editedTodo = null;
 
 	$scope.$watch('todos', function (newValue, oldValue) {
@@ -113,4 +122,8 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
         }
 
     };
+
+    $scope.refresh = function() {
+        updateTodos();
+    }
 });
