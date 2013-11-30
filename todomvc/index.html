@@ -40,6 +40,11 @@
             <br/>
             <label for="admin">Become admin</label><br/><input id="admin" type="checkbox" data-ng-model="admin"><br/>
             <br/>
+            <label for="authorization">Include authorization</label><br/><input id="authorization" type="checkbox" data-ng-model="authorization"><br/>
+            <br/>
+            <label>Last request status</label> <span>{{lastStatus}}</span>
+
+            <br/>
             <a href="#" data-ng-click="refresh()">Update</a>
         </div>
 		<section id="todoapp">

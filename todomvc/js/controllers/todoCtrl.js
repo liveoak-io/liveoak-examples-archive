@@ -22,8 +22,20 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
 
         todoStorage.query(query, function(todos) {
             $scope.todos = todos;
+        }, function() {
+            $scope.todos = [];
         });
     }
+
+    $scope.authorization = true;
+    var token = window._oauth.token;
+    $scope.$watch('authorization', function(authorization) {
+        if (authorization) {
+            window._oauth.token = token;
+        } else {
+            delete window._oauth.token;
+        }
+    })
 
     $scope.auth = Auth;
     $scope.username = Auth.username;

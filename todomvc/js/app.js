@@ -10,16 +10,26 @@
 var todomvc = angular.module('todomvc', [ 'ngRoute', 'ngResource' ]);
 
 todomvc.config(function ($provide, $httpProvider) {
-    $provide.factory('authInterceptor', function () {
+    $provide.factory('authInterceptor', function ($rootScope) {
         return {
             request: function (config) {
                 if (window._oauth.token) {
-                    console.debug('authenticated request ' + config.url);
+                    console.debug('authenticated request: ' + config.method + ' ' + config.url);
                     config.headers['Authorization'] = 'bearer ' + window._oauth.token;
                 } else {
-                    console.debug('normal request ' + config.url);
+                    console.debug('unauthenticated request: ' + config.method + ' ' + config.url);
                 }
                 return config;
+            },
+            response: function (response) {
+                 console.debug(response.status);
+                $rootScope.lastStatus = response.status;
+                return response;
+            },
+            responseError: function (response) {
+                console.debug(response.status);
+                $rootScope.lastStatus = response.status;
+                return response;
             }
         }
     });

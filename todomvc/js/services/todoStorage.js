@@ -7,63 +7,60 @@
 todomvc.factory('todoStorage', function ($cacheFactory, $http, Auth) {
     var baseUrl = 'http://localhost:8080';
     var resource = {
-        query: function (query, success) {
+        query: function (query, success, error) {
             var url = baseUrl + '/storage/todos?expand=*';
-            console.debug('query = ' + query);
             if (query) {
                 url += '&q=' + JSON.stringify(query);
             }
             $http.get(url).success(function (data) {
+                console.debug('retrieved tasks list');
                 if (!data._members) {
                     data._members = [];
                 }
                 success && success(data._members);
-            });
+            }).error(error);
         },
 
-        save: function (todo, success) {
-            console.debug('save ' + todo.title);
+        save: function (todo, success, error) {
             $http.post(baseUrl + '/storage/todos', todo).success(function () {
                 console.debug('saved ' + todo.title);
                 success && success();
-            });
+            }).error(error);
         },
 
-        update: function (todo, success) {
-            console.debug('update ' + todo.title);
+        update: function (todo, success, error) {
             console.debug(todo);
             var t = angular.copy(todo);
             delete t.self;
             $http.put(baseUrl + '/storage/todos/' + todo.id, t).success(function () {
                 console.debug('updated ' + todo.title);
                 success && success(todo);
-            });
+            }).error(error);
         },
 
-        remove: function (todo, success) {
-            console.debug('delete ' + todo.title);
+        remove: function (todo, success, error) {
             $http.delete(baseUrl + '/storage/todos/' + todo.id).success(function () {
                 console.debug('deleted ' + todo.title);
                 success && success(todo);
-            });
+            }).error(error);
         }
     }
 
     return {
-        query: function (query, success) {
-            return resource.query(query, success);
+        query: function (query, success, error) {
+            return resource.query(query, success, error);
         },
 
-        remove: function (todo, success) {
-            return resource.remove(todo, success);
+        remove: function (todo, success, error) {
+            return resource.remove(todo, success, error);
         },
 
-        save: function (todo, success) {
-            return resource.save(todo, success);
+        save: function (todo, success, error) {
+            return resource.save(todo, success, error);
         },
 
-        update: function (todo, success) {
-            return resource.update(todo, success);
+        update: function (todo, success, error) {
+            return resource.update(todo, success, error);
         }
     };
 });
