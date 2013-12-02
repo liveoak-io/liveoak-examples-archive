@@ -22,7 +22,7 @@
             var req = new XMLHttpRequest();
             req.open('GET', '/storage', false);
             if (liveOak.auth.token) {
-                req.setRequestHeader('Authorization', 'Bearer ' + liveOak.auth.token);
+                req.setRequestHeader('Authorization', 'Bearer ' + liveOak.auth._token);
             }
             req.send();
             alert("status = " + req.status);
