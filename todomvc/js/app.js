@@ -22,7 +22,6 @@ todomvc.config(function ($provide, $httpProvider) {
                 return config;
             },
             response: function (response) {
-                 console.debug(response.status);
                 $rootScope.lastStatus = response.status;
                 return response;
             },

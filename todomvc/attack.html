@@ -1,0 +1,15 @@
+<div id="hack" data-ng-controller="AttackCtrl">
+    <h2>Attempt evil!</h2>
+    <label for="username">Change user</label><br/><input id="username" type="text" data-ng-model="username"><br/>
+    <br/>
+    <label for="admin">Become admin</label><br/><input id="admin" type="checkbox" data-ng-model="admin"><br/>
+    <br/>
+    <label for="authorization">Include authorization</label><br/><input id="authorization" type="checkbox" data-ng-model="authorization"><br/>
+    <br/>
+    <label>Last request status</label><br/><span ng-style="lastStatus >= 400 && {'font-size': '20px', 'color': 'red'} || {'font-size': '20px'}"> {{lastStatus}}</span>
+
+    <br/><br/>
+
+    <input type="button" data-ng-click="attack()" value="Attack"/>
+    <input type="button" data-ng-click="reset()" value="Reset"/>
+</div>

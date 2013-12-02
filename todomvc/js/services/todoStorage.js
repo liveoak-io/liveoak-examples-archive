@@ -4,7 +4,7 @@
 /**
  * Services that persists and retrieves TODOs from localStorage
  */
-todomvc.factory('todoStorage', function ($cacheFactory, $http, Auth) {
+todomvc.factory('todoStorage', function ($cacheFactory, $http) {
     var baseUrl = 'http://localhost:8080';
     var resource = {
         query: function (query, success, error) {

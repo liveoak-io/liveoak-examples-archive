@@ -34,19 +34,7 @@
 	</head>
 	<body ng-controller="TodoCtrl" ng-cloak>
         <span id="user"><span style="margin-right: 20px;">{{auth.username}} ({{auth.hasResourceRole('admin') ? 'admin' : 'user'}})</span><a href="#" data-ng-click="auth.logout()">logout</a></span>
-        <div id="hack">
-            <h2>Attempt evil!</h2>
-            <label for="username">Change user</label><br/><input id="username" type="text" data-ng-model="username"><br/>
-            <br/>
-            <label for="admin">Become admin</label><br/><input id="admin" type="checkbox" data-ng-model="admin"><br/>
-            <br/>
-            <label for="authorization">Include authorization</label><br/><input id="authorization" type="checkbox" data-ng-model="authorization"><br/>
-            <br/>
-            <label>Last request status</label> <span>{{lastStatus}}</span>
-
-            <br/>
-            <a href="#" data-ng-click="refresh()">Update</a>
-        </div>
+        <div data-ng-include="'attack.html'"></div>
 		<section id="todoapp">
 			<header id="header">
 				<h1>todos</h1>
@@ -62,7 +50,7 @@
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="todo.completed" data-ng-change="updateTodo(todo)">
 							<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
-                            <span data-ng-show="admin" style="float: right; font-size: 10px; right: 10px; position: relative; top: -50px;">User: {{todo.user}}</span>
+                            <span data-ng-show="{{todo.user != username}}" style="float: right; font-size: 10px; right: 10px; position: relative; top: -50px;">User: {{todo.user}}</span>
 							<button class="destroy" ng-click="removeTodo(todo)"></button>
 						</div>
 						<form ng-submit="doneEditing(todo)">
