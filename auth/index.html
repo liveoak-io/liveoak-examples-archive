@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>Restafari Example</title>
+    <script src="/client/mboss.js" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <script>
+        var mboss = new mBoss();
+
+        var invokeStorage = function() {
+            var req = new XMLHttpRequest();
+            req.open('GET', '/storage', false);
+            if (mboss.auth.token) {
+                req.setRequestHeader('Authorization', 'Bearer ' + mboss.auth.token);
+            }
+            req.send();
+            alert("status = " + req.status);
+        }
+
+        mboss.auth.authCallback = function(auth) {
+            document.write('<a href="#" onclick="invokeStorage()">Invoke storage</a>');
+
+            if (auth) {
+                document.write('<h1>Authenticated</h1>');
+                document.write('<a href="#" onclick="mboss.auth.logout()">Logout</a>');
+
+                document.write('<h2>Profile</h2>');
+                document.write('<ul>');
+                for (var i in mboss.auth.user) {
+                    document.write('<li><strong>' + i + ':</strong> ' + mboss.auth.user[i] + '</li>');
+                }
+                document.write('</ul>');
+
+                document.write('<h2>Access</h2>');
+                document.write('<ul>');
+                if (mboss.auth.realmAccess) {
+                    document.write('<li><strong>Realm:</strong> ' + mboss.auth.realmAccess.roles +  '</li>')
+                }
+                for (var i in mboss.auth.resourceAccess) {
+                    document.write('<li><strong>' + i + ':</strong> ' + mboss.auth.resourceAccess[i].roles + '</li>');
+                }
+                document.write('</ul>');
+
+                document.write('<h2>Token</h2>');
+                document.write('<pre style="display: inline-block; border: 1px solid #ccc; padding: 1em; background-color: #eee">' + JSON.stringify(mboss.auth.tokenParsed, undefined, 4) + '</pre>');
+            } else {
+                document.write('<h1>Not authenticated</h1>');
+                document.write('<a href="#" onclick="mboss.auth.login()">Login</a>');
+            }
+        }
+
+        mboss.auth.init({
+            clientId: 'test-app',
+            clientSecret: 'password'
+        });
+    </script>
+  </body>
+</html>
