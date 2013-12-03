@@ -57,6 +57,12 @@
                 }
                 
                 document.getElementById('profile').innerHTML = content;
+            } else if (callbackState === 'error') {
+                content = '<h1>Error</h1>';
+                content += '<p>' + arguments[1] + '</p>'
+                content += '<a href="#" onclick="liveOak.auth.login()">Login</a>';
+
+                document.getElementById('content').innerHTML = content;
             }
         }
 
