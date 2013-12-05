@@ -167,6 +167,14 @@ todomvc.controller('AttackCtrl', function AttackCtrl($scope, $injector, todoStor
             originalTodoStorage.save(todo, success, error);
         }
 
+        todoStorage.update = function (todo, success, error) {
+            if ($scope.username) {
+                todo.user = $scope.username;
+            }
+
+            originalTodoStorage.update(todo, success, error);
+        }
+
         $scope.refresh();
     }
 

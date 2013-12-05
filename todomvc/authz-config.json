@@ -3,6 +3,11 @@
         {
             "policyName" : "URIPolicy",
             "policyResourceEndpoint": "uriPolicy/authzCheck"
-        } 
+        },
+        {
+            "policyName" : "ACLPolicy",
+            "policyResourceEndpoint": "aclPolicy/authzCheck",
+	    "includedResourcePrefixes": [ "/storage" ]
+        }  
     ]
 }
