@@ -1,78 +1,89 @@
 <html>
-  <head>
+<head>
     <title>Restafari Example</title>
     <script src="/client/liveoak.js" type="text/javascript"></script>
-  </head>
-
-  <body>
-    <a href="#" onclick="invokeStorage()">Invoke storage</a>
-    <div id="content">
-      <h1>Not authenticated</h1>
-      <a href="#" onclick="liveOak.auth.login()">Login</a>
-    </div>
-    <div id="profile"></div>
-    <script>
-        var liveOak = new LiveOak({
-            host: "localhost", 
-            port: 8080, 
-            secure: false 
-        });
-
-        var invokeStorage = function() {
-            var req = new XMLHttpRequest();
-            req.open('GET', '/storage', false);
-            if (liveOak.auth.token) {
-                req.setRequestHeader('Authorization', 'Bearer ' + liveOak.auth._token);
-            }
-            req.send();
-            alert("status = " + req.status);
+    <style>
+        pre {
+            display: inline-block; border: 1px solid #ccc; padding: 1em; background-color: #eee
         }
+    </style>
+</head>
 
-        var authCallback = function(callbackState) {
-            console.debug('callbackState: ' + callbackState);            
-            
-            if (callbackState === 'authenticated') {
-                content = 
-                  '<h1>Authenticated</h1>'
-                + '<a href="#" onclick="liveOak.auth.logout()">Logout</a>'               
-                + '<h2>Access</h2>'
-                + '<ul>';
-                if (liveOak.auth.realmAccess) {
-                    content += '<li><strong>Realm:</strong> ' + liveOak.auth.realmAccess.roles +  '</li>';
-                }
-                for (var i in liveOak.auth.resourceAccess) {
-                    content += '<li><strong>' + i + ':</strong> ' + liveOak.auth.resourceAccess[i].roles + '</li>';
-                }
-                content += '</ul>'
+<body>
+<a href="#" onclick="invokeStorage()">Invoke storage</a>
+<div id="storage"></div>
+
+<div id="content">
+    <h1>Not authenticated</h1>
+    <a href="#" onclick="liveOak.auth.login()">Login</a>
+</div>
+<div id="profile"></div>
+<script>
+    var invokeStorage = function () {
+        liveOak.read('/storage', { success: function (data) {
+            console.debug(data);
+            document.getElementById('storage').innerHTML = 'Success:<br/><pre>' + JSON.stringify(data, null, '    ') + '</pre>'
+        }, error: function (data) {
+            console.debug(data);
+            document.getElementById('storage').innerHTML = 'Error:<br/><pre>' + JSON.stringify(data, null, '    ') + '</pre>'
+        }});
+    }
+
+    var authSuccess = function () {
+        var content =
+                '<h1>Authenticated</h1>'
+                        + '<a href="#" onclick="liveOak.auth.logout()">Logout</a>'
+                        + '<h2>Access</h2>'
+                        + '<ul>';
+        if (liveOak.auth.realmAccess) {
+            content += '<li><strong>Realm:</strong> ' + liveOak.auth.realmAccess.roles + '</li>';
+        }
+        for (var i in liveOak.auth.resourceAccess) {
+            content += '<li><strong>' + i + ':</strong> ' + liveOak.auth.resourceAccess[i].roles + '</li>';
+        }
+        content += '</ul>'
 
                 + '<h2>Token</h2>'
-                + '<pre style="display: inline-block; border: 1px solid #ccc; padding: 1em; background-color: #eee">' + JSON.stringify(liveOak.auth._tokenParsed, undefined, 4) + '</pre>';
-		
-                document.getElementById('content').innerHTML = content;
-            } else if (callbackState === 'authenticated-profile') {
-                content = '<h2>Profile</h2>'
-                    + '<ul>';
-                for (var i in liveOak.auth._user) {
-                    content += '<li><strong>' + i + ':</strong> ' + liveOak.auth._user[i] + '</li>';
-                }
-                
-                document.getElementById('profile').innerHTML = content;
-            } else if (callbackState === 'error') {
-                content = '<h1>Error</h1>';
-                content += '<p>' + arguments[1] + '</p>'
-                content += '<a href="#" onclick="liveOak.auth.login()">Login</a>';
+                + '<pre>' + JSON.stringify(liveOak.auth.tokenParsed, undefined, 4) + '</pre>';
 
-                document.getElementById('content').innerHTML = content;
-            }
+        document.getElementById('content').innerHTML = content;
+
+        liveOak.auth.getUserProfile(authProfileLoaded);
+    }
+
+    var authError = function () {
+        var content = '<h1>Error</h1>';
+        content += '<p>' + arguments[1] + '</p>'
+        content += '<a href="#" onclick="liveOak.auth.login()">Login</a>';
+
+        document.getElementById('content').innerHTML = content;
+    }
+
+    var authProfileLoaded = function (profile) {
+        var content = '<h2>Profile</h2>'
+                + '<ul>';
+        for (var i in profile) {
+            content += '<li><strong>' + i + ':</strong> ' + profile.user[i] + '</li>';
         }
 
-        liveOak.auth.init({
+        document.getElementById('profile').innerHTML = content;
+    }
+
+    var liveOak = LiveOak({
+        host: "localhost",
+        port: 8080,
+        secure: false,
+        auth: {
             clientId: 'test-app',
             clientSecret: 'password',
             onload: 'check-sso',
-            loadProfile: true,
-            callback: authCallback
-        });
-    </script>    
-  </body>
+            success: authSuccess,
+            error: authError
+        }
+    });
+
+    liveOak.auth.init();
+
+</script>
+</body>
 </html>
