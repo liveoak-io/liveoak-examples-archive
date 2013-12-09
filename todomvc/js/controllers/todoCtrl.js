@@ -6,7 +6,7 @@
  * - retrieves and persists the model via the todoStorage service
  * - exposes the model to the template and provides event handlers
  */
-todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage, filterFilter, Auth) {
+todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage, filterFilter, LiveOak) {
     $scope.todos = [];
     var updateTodos = function () {
         var query = ($location.path() === '/active') ?
@@ -21,15 +21,13 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
         }
 
         todoStorage.query(query, function (todos) {
-            $scope.todos = todos || [];
-        }, function () {
-            $scope.todos = [];
+            $scope.todos = todos;
         });
     }
 
-    $scope.auth = Auth;
-    $scope.username = Auth.username;
-    $scope.admin = Auth.hasResourceRole('admin');
+    $scope.auth = LiveOak.auth;
+    $scope.username = LiveOak.auth.username;
+    $scope.admin = LiveOak.auth.hasResourceRole('admin');
 
     updateTodos();
 
@@ -63,13 +61,16 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
             title: newTodo,
             completed: false,
             user: $scope.username
-        }, updateTodos);
+        }, function (todo) {
+            $scope.todos.push(todo);
+        });
 
         $scope.newTodo = '';
     };
 
     $scope.editTodo = function (todo) {
         $scope.editedTodo = todo;
+        $scope.editedTodoOrig = angular.copy(todo);
     };
 
     $scope.doneEditing = function (todo) {
@@ -80,34 +81,37 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
         $scope.editedTodo = null;
         todo.title = todo.title.trim();
         if (!todo.title) {
-            todoStorage.remove(todo, updateTodos);
+            $scope.removeTodo(todo);
         } else {
-            todoStorage.update(todo, updateTodos);
+            $scope.updateTodo(todo);
         }
     };
 
     $scope.revertEditing = function (todo) {
-        updateTodos();
+        $scope.todos[$scope.todos.indexOf(todo)] = $scope.editedTodoOrig;
+        $scope.editedTodo = null;
+        $scope.editedTodoOrig = null;
     };
 
     $scope.removeTodo = function (todo) {
-        todoStorage.remove(todo, updateTodos);
+        todoStorage.remove(todo, function () {
+            $scope.todos.splice($scope.todos.indexOf(todo), 1);
+        });
     };
 
     $scope.updateTodo = function (todo) {
-        todoStorage.update(todo, updateTodos);
+        todoStorage.update(todo, function (updated) {
+            $scope.$apply(function () {
+                $scope.todos[$scope.todos.indexOf(todo)] = updated;
+            });
+        });
     };
 
     $scope.clearCompletedTodos = function () {
         var completed = filterFilter($scope.todos, { completed: true });
         var tasks = completed.length;
         for (var i = 0; i < completed.length; i++) {
-            todoStorage.remove(completed[i], function () {
-                tasks--;
-                if (tasks == 0) {
-                    updateTodos();
-                }
-            })
+            $scope.removeTodo(completed[i]);
         }
     };
 
@@ -115,12 +119,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
         var tasks = $scope.todos.length;
         for (var i = 0; i < $scope.todos.length; i++) {
             $scope.todos[i].completed = completed;
-            todoStorage.update($scope.todos[i], function () {
-                tasks--;
-                if (tasks == 0) {
-                    updateTodos();
-                }
-            });
+            $scope.updateTodo($scope.todos[i]);
         }
 
     };
@@ -131,19 +130,19 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
 });
 
 
-todomvc.controller('AttackCtrl', function AttackCtrl($scope, $injector, todoStorage, Auth) {
-    $scope.username = Auth.username;
-    $scope.admin = Auth.hasResourceRole('admin');
+todomvc.controller('AttackCtrl', function AttackCtrl($scope, $injector, todoStorage, LiveOak) {
+    $scope.username = LiveOak.auth.username;
+    $scope.admin = LiveOak.auth.hasResourceRole('admin');
     $scope.authorization = true;
 
-    var originalToken = window._oauth.token;
+    var originalToken = window.oauth.token;
     var originalTodoStorage = angular.copy(todoStorage);
 
     $scope.attack = function () {
         if ($scope.authorization) {
-            window._oauth.token = originalToken;
+            window.oauth.token = originalToken;
         } else {
-            delete window._oauth.token;
+            delete window.oauth.token;
         }
 
         todoStorage.query = function (query, success, error) {
@@ -168,10 +167,10 @@ todomvc.controller('AttackCtrl', function AttackCtrl($scope, $injector, todoStor
     }
 
     $scope.reset = function () {
-        $scope.username = $scope.attack.username = Auth.username;
-        $scope.admin = $scope.attack.admin = Auth.hasResourceRole('admin');
+        $scope.username = $scope.attack.username = LiveOak.auth.username;
+        $scope.admin = $scope.attack.admin = LiveOak.auth.hasResourceRole('admin');
         $scope.authorization = true;
-        window._oauth.token = originalToken;
+        window.oauth.token = originalToken;
 
         todoStorage.query = originalTodoStorage.query;
         todoStorage.save = originalTodoStorage.save;
