@@ -21,10 +21,8 @@
 <script>
     var invokeStorage = function () {
         liveOak.read('/storage', { success: function (data) {
-            console.debug(data);
             document.getElementById('storage').innerHTML = 'Success:<br/><pre>' + JSON.stringify(data, null, '    ') + '</pre>'
         }, error: function (data) {
-            console.debug(data);
             document.getElementById('storage').innerHTML = 'Error:<br/><pre>' + JSON.stringify(data, null, '    ') + '</pre>'
         }});
     }
@@ -70,9 +68,6 @@
     }
 
     var liveOak = LiveOak({
-        host: "localhost",
-        port: 8080,
-        secure: false,
         auth: {
             clientId: 'test-app',
             clientSecret: 'password',
