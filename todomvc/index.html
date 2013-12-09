@@ -43,7 +43,7 @@
 				</form>
 			</header>
 			<section id="main">
-				<input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+				<input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll()">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul id="todo-list">
 					<li ng-repeat="todo in todos track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">

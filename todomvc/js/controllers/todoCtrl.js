@@ -29,6 +29,8 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
     $scope.username = LiveOak.auth.username;
     $scope.admin = LiveOak.auth.hasResourceRole('admin');
 
+    $scope.allChecked = false;
+
     updateTodos();
 
     $scope.newTodo = '';
@@ -37,6 +39,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
     $scope.$watch('todos', function (newValue, oldValue) {
         $scope.remainingCount = filterFilter($scope.todos, { completed: false }).length;
         $scope.completedCount = $scope.todos.length - $scope.remainingCount;
+        $scope.allChecked = filterFilter($scope.todos, { completed: false}) == 0;
     }, true);
 
     if ($location.path() === '') {
@@ -115,13 +118,14 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
         }
     };
 
-    $scope.markAll = function (completed) {
-        var tasks = $scope.todos.length;
+    $scope.markAll = function () {
+        $scope.allChecked = !$scope.allChecked;
         for (var i = 0; i < $scope.todos.length; i++) {
-            $scope.todos[i].completed = completed;
-            $scope.updateTodo($scope.todos[i]);
+            if ($scope.todos[i].completed != $scope.allChecked) {
+                $scope.todos[i].completed = $scope.allChecked;
+                $scope.updateTodo($scope.todos[i]);
+            }
         }
-
     };
 
     $scope.refresh = function () {
