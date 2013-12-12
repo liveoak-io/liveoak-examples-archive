@@ -1,0 +1,22 @@
+{ 
+    "uriRules": [
+        {
+            "priority": 1,
+            "uriPattern": "/app/*",
+            "requestType": "*",
+            "allowedUsers": "'*'"
+        },
+        {
+            "priority": 1,
+            "uriPattern": "/client/*",
+            "requestType": "*",
+            "allowedUsers": "'*'"
+        },
+        {
+            "priority": 1,
+            "uriPattern": "/storage/*",            
+            "requestType": "*",
+            "allowedRoles": "'test-app/admin','test-app/user'"
+        }
+    ]
+}
