@@ -8,7 +8,9 @@ todomvc.factory('todoStorage', function (LiveOak, $rootScope) {
 
     var wrap = function (f) {
         return function (data) {
-            $rootScope.$apply(f(data));
+            if (f) {
+                $rootScope.$apply(f(data));
+            }
         }
     }
 
