@@ -46,22 +46,22 @@
 
         document.getElementById('content').innerHTML = content;
 
-        liveOak.auth.getUserProfile(authProfileLoaded);
+        liveOak.auth.getUserProfile({ success: authProfileLoaded });
     }
 
-    var authError = function () {
+    var authError = function (errorDetails) {
         var content = '<h1>Error</h1>';
-        content += '<p>' + arguments[1] + '</p>'
+        content += '<pre>' + JSON.stringify(errorDetails, undefined, 4) + '</pre><br/>'
         content += '<a href="#" onclick="liveOak.auth.login()">Login</a>';
 
         document.getElementById('content').innerHTML = content;
     }
 
-    var authProfileLoaded = function (profile) {
+    var authProfileLoaded = function (profileResponse) {
         var content = '<h2>Profile</h2>'
                 + '<ul>';
-        for (var i in profile) {
-            content += '<li><strong>' + i + ':</strong> ' + profile.user[i] + '</li>';
+        for (var i in profileResponse) {
+            content += '<li><strong>' + i + ':</strong> ' + profileResponse[i] + '</li>';
         }
 
         document.getElementById('profile').innerHTML = content;

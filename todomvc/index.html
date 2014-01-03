@@ -33,7 +33,7 @@
         </style>
 	</head>
 	<body ng-controller="TodoCtrl" ng-cloak>
-        <span id="user"><span style="margin-right: 20px;">{{auth.username}} ({{auth.hasResourceRole('admin') ? 'admin' : 'user'}})</span><a href="#" data-ng-click="auth.logout()">logout</a></span>
+        <span id="user"><span style="margin-right: 20px;" ng-bind-template="{{auth.username}} ({{auth.hasResourceRole('admin') ? 'admin' : 'user'}})"></span><a href="#" data-ng-click="auth.logout()">logout</a></span>
         <div data-ng-include="'attack.html'"></div>
 		<section id="todoapp">
 			<header id="header">
@@ -48,9 +48,9 @@
 				<ul id="todo-list">
 					<li ng-repeat="todo in todos track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
 						<div class="view">
-							<input class="toggle" type="checkbox" ng-model="todo.completed" data-ng-change="updateTodo(todo)">
+							<input class="toggle" type="checkbox" ng-model="todo.completed" data-ng-change="updateTodoCompletionStatus(todo)">
 							<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
-                            <span data-ng-show="{{todo.user != username}}" style="float: right; font-size: 10px; right: 10px; position: relative; top: -50px;">User: {{todo.user}}</span>
+                            <span data-ng-show="todo.user != username" style="float: right; font-size: 10px; right: 10px; position: relative; top: -50px;">User: {{todo.user}}</span>
 							<button class="destroy" ng-click="removeTodo(todo)"></button>
 						</div>
 						<form ng-submit="doneEditing(todo)">

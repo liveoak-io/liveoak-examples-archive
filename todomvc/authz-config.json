@@ -7,7 +7,7 @@
         {
             "policyName" : "ACLPolicy",
             "policyResourceEndpoint": "aclPolicy/authzCheck",
-	    "includedResourcePrefixes": [ "/storage" ]
+            "includedResourcePrefixes": [ "/storage" ]
         }  
     ]
 }
