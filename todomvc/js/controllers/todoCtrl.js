@@ -155,23 +155,55 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
     $scope.refresh = function () {
         updateTodos();
     }
+
+    $scope.userLabel = function() {
+        var role = "";
+        if ($scope.auth.hasResourceRole("admin")) {
+            role = "admin";
+        } else if ($scope.auth.hasResourceRole("user")) {
+            role = "user";
+        }
+        return $scope.auth.username + " (" + role + ")";
+    }
 });
 
 
 todomvc.controller('AttackCtrl', function AttackCtrl($scope, $injector, todoStorage, LiveOak) {
-    $scope.username = LiveOak.auth.username;
-    $scope.showAll = LiveOak.auth.hasResourceRole('admin');
-    $scope.authorization = true;
 
-    var originalToken = window.oauth.token;
-    var originalTodoStorage = angular.copy(todoStorage);
+    var restartState = function() {
+        $scope.username = LiveOak.auth.username;
+        $scope.showAll = LiveOak.auth.hasResourceRole('admin');
+        $scope.authorization = true;
+        $scope.useChangedUserOnUpdate = false;
+        $scope.attackMode = false;
+    }
 
-    $scope.attack = function () {
+    var refreshTokenState = function() {
         if ($scope.authorization) {
             window.oauth.token = originalToken;
         } else {
             delete window.oauth.token;
         }
+    }
+
+    restartState();
+
+    //
+    $scope.$watch('authorization', function (newValue, oldValue) {
+        if (!$scope.attackMode) {
+            return;
+        }
+
+        refreshTokenState();
+    }, true);
+
+    var originalToken = window.oauth.token;
+    var originalTodoStorage = angular.copy(todoStorage);
+
+    $scope.attack = function () {
+        $scope.attackMode = true;
+
+        refreshTokenState();
 
         todoStorage.query = function (query, success, error) {
             if ($scope.showAll) {
@@ -197,7 +229,7 @@ todomvc.controller('AttackCtrl', function AttackCtrl($scope, $injector, todoStor
         }
 
         todoStorage.update = function (todo, success, error) {
-            if ($scope.username) {
+            if ($scope.useChangedUserOnUpdate && $scope.username) {
                 todo.user = $scope.username;
             }
 
@@ -208,9 +240,8 @@ todomvc.controller('AttackCtrl', function AttackCtrl($scope, $injector, todoStor
     }
 
     $scope.reset = function () {
-        $scope.username =  LiveOak.auth.username;
-        $scope.showAll = LiveOak.auth.hasResourceRole('admin');
-        $scope.authorization = true;
+        restartState();
+
         window.oauth.token = originalToken;
 
         todoStorage.query = originalTodoStorage.query;

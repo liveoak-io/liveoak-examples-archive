@@ -33,7 +33,7 @@
         </style>
 	</head>
 	<body ng-controller="TodoCtrl" ng-cloak>
-        <span id="user"><span style="margin-right: 20px;" ng-bind-template="{{auth.username}} ({{auth.hasResourceRole('admin') ? 'admin' : 'user'}})"></span><a href="#" data-ng-click="auth.logout()">logout</a></span>
+        <span id="user"><span style="margin-right: 20px;" ng-bind-template="{{userLabel()}}"></span><a href="#" data-ng-click="auth.logout()">logout</a></span>
         <div data-ng-include="'attack.html'"></div>
 		<section id="todoapp">
 			<header id="header">

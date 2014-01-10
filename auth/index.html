@@ -46,7 +46,7 @@
 
         document.getElementById('content').innerHTML = content;
 
-        liveOak.auth.getUserProfile({ success: authProfileLoaded });
+        liveOak.auth.getUserProfile({ success: authProfileLoaded, error: authProfileLoadedError });
     }
 
     var authError = function (errorDetails) {
@@ -63,6 +63,13 @@
         for (var i in profileResponse) {
             content += '<li><strong>' + i + ':</strong> ' + profileResponse[i] + '</li>';
         }
+
+        document.getElementById('profile').innerHTML = content;
+    }
+
+    var authProfileLoadedError = function (errorDetails) {
+        var content = '<h2>Error loading profile</h2>'
+                    + '<pre>' + JSON.stringify(errorDetails, undefined, 4) + '</pre><br/>';
 
         document.getElementById('profile').innerHTML = content;
     }

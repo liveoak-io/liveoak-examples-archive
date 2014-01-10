@@ -13,12 +13,6 @@
             "allowedUsers": "'*'"
         },
         {
-            "priority": 2,
-            "uriPattern": "/storage*",            
-            "requestType": "*",
-            "allowedRoles": "'test-app/admin'"
-        },
-        {
             "priority": 1,
             "uriPattern": "/storage*",            
             "requestType": "READ",
