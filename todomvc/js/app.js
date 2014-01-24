@@ -9,23 +9,6 @@
  */
 var todomvc = angular.module('todomvc', [ 'ngRoute', 'ngResource' ]);
 
-todomvc.config(function ($provide, $httpProvider) {
-    $provide.factory('authInterceptor', function ($rootScope) {
-        return {
-            response: function (response) {
-                $rootScope.lastStatus = response.status;
-                return response;
-            },
-            responseError: function (response) {
-                console.debug(response.status);
-                $rootScope.lastStatus = response.status;
-                return response;
-            }
-        }
-    });
-    $httpProvider.interceptors.push('authInterceptor');
-})
-
 angular.element(document).ready(function () {
     var liveOak = LiveOak({
         auth: {

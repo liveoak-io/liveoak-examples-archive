@@ -8,12 +8,14 @@
  */
 todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage, filterFilter, LiveOak) {
     $scope.todos = [];
+    $scope.editedTodoOrig = [];
+
     var updateTodos = function () {
         var query = ($location.path() === '/active') ?
         { completed: false } : ($location.path() === '/completed') ?
         { completed: true } : null;
 
-        if (!$scope.admin) {
+        if (!$scope.showAll) {
             if (!query) {
                 query = {};
             }
@@ -27,7 +29,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
 
     $scope.auth = LiveOak.auth;
     $scope.username = LiveOak.auth.username;
-    $scope.admin = LiveOak.auth.hasResourceRole('admin');
+    $scope.showAll = LiveOak.auth.hasResourceRole('admin');
 
     $scope.allChecked = false;
 
@@ -49,6 +51,10 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
     $scope.location = $location;
 
     $scope.$watch('location.path()', function (newValue, oldValue) {
+        if (newValue === '') {
+            newValue = '/';
+        }
+
         if (newValue != oldValue) {
             updateTodos();
         }
@@ -73,7 +79,9 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
 
     $scope.editTodo = function (todo) {
         $scope.editedTodo = todo;
-        $scope.editedTodoOrig = angular.copy(todo);
+
+        var i = $scope.todos.indexOf(todo);
+        $scope.editedTodoOrig[i] = angular.copy(todo);
     };
 
     $scope.doneEditing = function (todo) {
@@ -91,9 +99,21 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
     };
 
     $scope.revertEditing = function (todo) {
-        $scope.todos[$scope.todos.indexOf(todo)] = $scope.editedTodoOrig;
+        var i = $scope.todos.indexOf(todo);
+        if ($scope.editedTodoOrig[i]) {
+            $scope.todos[i] = $scope.editedTodoOrig[i];
+        }
         $scope.editedTodo = null;
-        $scope.editedTodoOrig = null;
+        $scope.editedTodoOrig[i] = null;
+    };
+
+    $scope.updateTodoCompletionStatus = function (todo) {
+        var i = $scope.todos.indexOf(todo);
+        $scope.editedTodoOrig[i] = angular.copy(todo);
+        // Checkbox state changed, so original todo.completed is equal to opposite in UI
+        $scope.editedTodoOrig[i].completed = !todo.completed;
+
+        $scope.updateTodo(todo);
     };
 
     $scope.removeTodo = function (todo) {
@@ -104,9 +124,13 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
 
     $scope.updateTodo = function (todo) {
         todoStorage.update(todo, function (updated) {
-            $scope.$apply(function () {
-                $scope.todos[$scope.todos.indexOf(todo)] = updated;
-            });
+            $scope.todos[$scope.todos.indexOf(todo)] = updated;
+        }, function(error) {
+            // Update was not successful,so we need to revert todo in UI to editedTodoOrig (original value)
+            var i = $scope.todos.indexOf(todo);
+            if ($scope.editedTodoOrig[i]) {
+                $scope.todos[i] = $scope.editedTodoOrig[i];
+            }
         });
     };
 
@@ -123,7 +147,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
         for (var i = 0; i < $scope.todos.length; i++) {
             if ($scope.todos[i].completed != $scope.allChecked) {
                 $scope.todos[i].completed = $scope.allChecked;
-                $scope.updateTodo($scope.todos[i]);
+                $scope.updateTodoCompletionStatus($scope.todos[i]);
             }
         }
     };
@@ -131,28 +155,65 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
     $scope.refresh = function () {
         updateTodos();
     }
+
+    $scope.userLabel = function() {
+        var role = "";
+        if ($scope.auth.hasResourceRole("admin")) {
+            role = "admin";
+        } else if ($scope.auth.hasResourceRole("user")) {
+            role = "user";
+        }
+        return $scope.auth.username + " (" + role + ")";
+    }
 });
 
 
 todomvc.controller('AttackCtrl', function AttackCtrl($scope, $injector, todoStorage, LiveOak) {
-    $scope.username = LiveOak.auth.username;
-    $scope.admin = LiveOak.auth.hasResourceRole('admin');
-    $scope.authorization = true;
 
-    var originalToken = window.oauth.token;
-    var originalTodoStorage = angular.copy(todoStorage);
+    var restartState = function() {
+        $scope.username = LiveOak.auth.username;
+        $scope.showAll = LiveOak.auth.hasResourceRole('admin');
+        $scope.authorization = true;
+        $scope.useChangedUserOnUpdate = false;
+        $scope.attackMode = false;
+    }
 
-    $scope.attack = function () {
+    var refreshTokenState = function() {
         if ($scope.authorization) {
             window.oauth.token = originalToken;
         } else {
             delete window.oauth.token;
         }
+    }
+
+    restartState();
+
+    //
+    $scope.$watch('authorization', function (newValue, oldValue) {
+        if (!$scope.attackMode) {
+            return;
+        }
+
+        refreshTokenState();
+    }, true);
+
+    var originalToken = window.oauth.token;
+    var originalTodoStorage = angular.copy(todoStorage);
+
+    $scope.attack = function () {
+        $scope.attackMode = true;
+
+        refreshTokenState();
 
         todoStorage.query = function (query, success, error) {
-            if ($scope.admin && query) {
-                delete query.user;
+            if ($scope.showAll) {
+                if (query) {
+                    delete query.user;
+                }
             } else if ($scope.username) {
+                if (!query) {
+                    query = {};
+                }
                 query.user = $scope.username;
             }
 
@@ -167,17 +228,25 @@ todomvc.controller('AttackCtrl', function AttackCtrl($scope, $injector, todoStor
             originalTodoStorage.save(todo, success, error);
         }
 
+        todoStorage.update = function (todo, success, error) {
+            if ($scope.useChangedUserOnUpdate && $scope.username) {
+                todo.user = $scope.username;
+            }
+
+            originalTodoStorage.update(todo, success, error);
+        }
+
         $scope.refresh();
     }
 
     $scope.reset = function () {
-        $scope.username = $scope.attack.username = LiveOak.auth.username;
-        $scope.admin = $scope.attack.admin = LiveOak.auth.hasResourceRole('admin');
-        $scope.authorization = true;
+        restartState();
+
         window.oauth.token = originalToken;
 
         todoStorage.query = originalTodoStorage.query;
         todoStorage.save = originalTodoStorage.save;
+        todoStorage.update = originalTodoStorage.update;
 
         $scope.refresh();
     }

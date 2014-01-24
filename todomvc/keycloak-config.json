@@ -1,24 +1,88 @@
 {
-    "name": "test-app",
+    "realm": "default",
     "enabled": true,
-    "webOrigins": [ "http://localhost:8080" ],
-    "redirectUris": [ "http://localhost:8080/app/index.html" ],
-    "credentials": [
+    "tokenLifespan": 3600,
+    "accessCodeLifespan": 10,
+    "accessCodeLifespanUserAction": 600,
+    "accountManagement": true,
+    "sslNotRequired": true,
+    "cookieLoginAllowed": true,
+    "registrationAllowed": true,
+    "resetPasswordAllowed": true,
+    "requiredCredentials": [ "password" ],
+    "requiredApplicationCredentials": [ "password" ],
+
+    "users" : [
         {
-            "type": "password",
-            "value": "password"
+            "username" : "bob",
+            "enabled": true,
+            "credentials" : [
+                { "type" : "password",
+                  "value" : "password" }
+            ]
+        },
+        {
+            "username" : "john",
+            "enabled": true,
+            "credentials" : [
+                { "type" : "password",
+                  "value" : "password" }
+            ]
+        },
+        {
+            "username" : "mary",
+            "enabled": true,
+            "credentials" : [
+                { "type" : "password",
+                  "value" : "password" }
+            ]
         }
     ],
-    "defaultRoles": [ "user", "storage" ],
-    "roles": [
+
+    "applications": [
         {
-            "name": "user"
-        },
-        {
-            "name": "storage"
-        },
-        {
-            "name": "admin"
+            "name": "test-app",
+            "enabled": true,
+            "webOrigins": [ "http://localhost:8080" ],
+            "redirectUris": [ "http://localhost:8080/app/index.html" ],
+            "credentials": [
+                {
+                    "type": "password",
+                    "value": "password"
+                }
+            ],
+            "defaultRoles": [ "user" ],
+            "roles": [
+                {
+                    "name": "user"
+                },
+                {
+                    "name": "admin"
+                }
+            ]
         }
-    ]
+    ],
+
+    "applicationRoleMappings": {
+        "test-app": [
+            {
+                "username": "bob",
+                "roles": [ "user", "admin" ]
+            },
+            {
+                "username": "john",
+                "roles": [ "user" ]
+            }
+        ],
+        "Account": [
+            {
+                "username": "bob",
+                "roles": [ "view-profile", "manage-account" ]
+            },
+            {
+                "username": "john",
+                "roles": [ "view-profile", "manage-account" ]
+            }
+        ]
+    }
 }
