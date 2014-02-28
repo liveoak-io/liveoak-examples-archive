@@ -1,5 +1,6 @@
 {
-    "realm": "default",
+    "id": "todomvc",
+    "realm": "todomvc",
     "enabled": true,
     "tokenLifespan": 3600,
     "accessCodeLifespan": 10,
@@ -8,7 +9,6 @@
     "registrationAllowed": true,
     "resetPasswordAllowed": true,
     "requiredCredentials": [ "password" ],
-    "requiredApplicationCredentials": [ "password" ],
 
     "users" : [
         {
@@ -37,27 +37,34 @@
         }
     ],
 
+    "roles": {
+        "application" : {
+            "test-app" : [
+                {
+                    "name": "user",
+                    "description": "Have Test-app User privileges"
+                },
+                {
+                    "name": "admin",
+                    "description": "Have Test-app Admin privileges"
+                }
+            ]
+        }
+    },
+
     "applications": [
         {
             "name": "test-app",
             "enabled": true,
             "webOrigins": [ "http://localhost:8080" ],
-            "redirectUris": [ "http://localhost:8080/app/index.html" ],
+            "redirectUris": [ "http://localhost:8080/todomvc/app/index.html" ],
             "credentials": [
                 {
-                    "type": "password",
+                    "type": "secret",
                     "value": "password"
                 }
             ],
-            "defaultRoles": [ "user" ],
-            "roles": [
-                {
-                    "name": "user"
-                },
-                {
-                    "name": "admin"
-                }
-            ]
+            "defaultRoles": [ "user" ]
         }
     ],
 

@@ -48,15 +48,13 @@ Next steps assume that you have LiveOak in directory: /tmp/liveoak
 
 2. Clone directory with liveoak-examples from github. Next steps assume that you have them in /tmp/liveoak-examples
 
-3. Install and run MongoDB database on your host on port 27017. Then create database "mboss" and collection "todos" in this database.
+3. Install and run MongoDB database on your host on port 27017. Then create database "liveoak" and collection "todos" in this database.
 
-3. Go to directory with 'todomvc' example via CMD:
-$cd /tmp/liveoak-examples/todomvc
+3. Run 'todomvc' example via CMD:
+$cd /tmp/liveoak
+$./launcher/bin/liveoak /tmp/liveoak-examples/todomvc
 
-4. Run LiveOak application via CMD command (you still need to be in directory with 'todomvc' application so that 'app' resource is able to find the files from current directory of your filesystem):
-$/tmp/liveoak/launcher/bin/liveoak
-
-5. After successful boot, let's open your browser and go to http://localhost:8080/app/index.html . You will be redirected to Keycloak login console.
+5. After successful boot, let's open your browser and go to http://localhost:8080/todomvc/app/index.html . You will be redirected to Keycloak login console.
 Now you can either register new account or try one of predefined ones. Predefined accounts are defined in keycloak-config.json file (See keycloak documentation for more details). So right now there is:
 - User "bob" with password "password"
 - User "john" with password "password"

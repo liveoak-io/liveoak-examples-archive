@@ -14,6 +14,7 @@ angular.element(document).ready(function () {
         auth: {
             clientId: 'test-app',
             clientSecret: 'password',
+            realm: 'todomvc',
             onload: 'login-required',
             success: function () {
                 todomvc.factory('LiveOak', function () {

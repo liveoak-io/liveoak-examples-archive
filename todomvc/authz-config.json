@@ -2,12 +2,12 @@
     "policies": [
         {
             "policyName" : "URIPolicy",
-            "policyResourceEndpoint": "uriPolicy/authzCheck"
+            "policyResourceEndpoint": "/todomvc/uriPolicy/authzCheck"
         },
         {
             "policyName" : "ACLPolicy",
-            "policyResourceEndpoint": "aclPolicy/authzCheck",
-            "includedResourcePrefixes": [ "/storage" ]
+            "policyResourceEndpoint": "/todomvc/aclPolicy/authzCheck",
+            "includedResourcePrefixes": [ "/todomvc/storage" ]
         }  
     ]
 }
