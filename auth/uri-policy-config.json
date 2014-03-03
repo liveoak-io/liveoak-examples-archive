@@ -2,7 +2,7 @@
     "uriRules": [
         {
             "priority": 1,
-            "uriPattern": "/auth/app*",
+            "uriPattern": "/auth*",
             "requestType": "*",
             "allowedUsers": "'*'"
         },

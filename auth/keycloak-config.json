@@ -57,7 +57,7 @@
             "name": "test-app",
             "enabled": true,
             "webOrigins": [ "http://localhost:8080" ],
-            "redirectUris": [ "http://localhost:8080/auth/app/index.html" ],
+            "redirectUris": [ "http://localhost:8080/auth" ],
             "credentials": [
                 {
                     "type": "secret",
