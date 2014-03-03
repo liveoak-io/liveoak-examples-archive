@@ -2,19 +2,19 @@
     "uriRules": [
         {
             "priority": 1,
-            "uriPattern": "/app/*",
+            "uriPattern": "/auth/app*",
             "requestType": "*",
             "allowedUsers": "'*'"
         },
         {
             "priority": 1,
-            "uriPattern": "/client/*",
+            "uriPattern": "/auth/client*",
             "requestType": "*",
             "allowedUsers": "'*'"
         },
         {
             "priority": 1,
-            "uriPattern": "/storage*",            
+            "uriPattern": "/auth/storage*",
             "requestType": "READ",
             "allowedRoles": "'test-app/user'"
         }

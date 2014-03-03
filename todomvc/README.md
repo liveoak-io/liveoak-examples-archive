@@ -50,7 +50,7 @@ Next steps assume that you have LiveOak in directory: /tmp/liveoak
 
 3. Install and run MongoDB database on your host on port 27017. Then create database "liveoak" and collection "todos" in this database.
 
-3. Run 'todomvc' example via CMD:
+4. Run 'todomvc' example via CMD:
 $cd /tmp/liveoak
 $./launcher/bin/liveoak /tmp/liveoak-examples/todomvc
 
