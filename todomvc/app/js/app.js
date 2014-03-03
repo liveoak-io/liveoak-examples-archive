@@ -29,4 +29,13 @@ angular.element(document).ready(function () {
     });
 
     liveOak.auth.init();
+
+    liveOak.connect( function() {
+      liveOak.create( '/todomvc/storage', { id: 'todos' }, {
+        success: function(data) {
+        },
+        error: function(data) {
+        }
+      } );
+    } );
 });
