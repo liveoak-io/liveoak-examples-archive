@@ -33,3 +33,4 @@ If you are not authenticated, you will see 401 error. In other case, you will se
 - NOTE: User "mary" doesn't have any role available. Hence she is not able to invoke storage resource and she is also not able to see her user profile
 
 6. You can visit: http://localhost:8383/auth/admin to see Keycloak admin console. You can login as admin/admin and then you can edit "default" realm and do something with it (create new roles, users etc.)
+
