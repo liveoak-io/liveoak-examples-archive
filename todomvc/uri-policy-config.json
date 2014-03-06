@@ -1,4 +1,4 @@
-{ 
+{
     "uriRules": [
         {
             "priority": 2,
@@ -8,7 +8,13 @@
         },
         {
             "priority": 1,
-            "uriPattern": "/todomvc*",
+            "uriPattern": "/todomvc",
+            "requestType": "READ",
+            "allowedUsers": "'*'"
+        },
+        {
+            "priority": 1,
+            "uriPattern": "/todomvc/app*",
             "requestType": "READ",
             "allowedUsers": "'*'"
         },

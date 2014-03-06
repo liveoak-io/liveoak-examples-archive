@@ -2,8 +2,14 @@
     "uriRules": [
         {
             "priority": 1,
-            "uriPattern": "/auth*",
-            "requestType": "*",
+            "uriPattern": "/auth",
+            "requestType": "READ",
+            "allowedUsers": "'*'"
+        },
+        {
+            "priority": 1,
+            "uriPattern": "/auth/app/index.html",
+            "requestType": "READ",
             "allowedUsers": "'*'"
         },
         {
