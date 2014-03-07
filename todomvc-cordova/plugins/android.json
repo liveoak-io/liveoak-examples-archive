@@ -1,0 +1,28 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "res/xml/config.xml": {
+            "/*": {
+                "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>": 1,
+                "<feature name=\"ChildBrowser\"><param name=\"android-package\" value=\"com.phonegap.plugins.childBrowser.ChildBrowser\" /></feature>": 1
+            }
+        },
+        "AndroidManifest.xml": {
+            "/manifest/application": {
+                "<activity android:label=\"@string/app_name\" android:name=\"com.phonegap.plugins.childBrowser.ChildBrowser\"><intent-filter></intent-filter></activity>": 1
+            }
+        }
+    },
+    "installed_plugins": {
+        "org.apache.cordova.inappbrowser": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
+        "com.phonegap.plugins.childbrowser": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        }
+    },
+    "dependent_plugins": {}
+}

@@ -49,7 +49,7 @@
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="todo.completed" data-ng-change="updateTodoCompletionStatus(todo)">
 							<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
-                            <span data-ng-show="todo.user != username" style="float: right; font-size: 10px; right: 10px; position: relative; top: -50px;">User: {{todo.user}}</span>
+                            <span data-ng-show="todo.user != user" style="float: right; font-size: 10px; right: 10px; position: relative; top: -50px;">User: {{todo.user}}</span>
 							<button class="destroy" ng-click="removeTodo(todo)"></button>
 						</div>
 						<form ng-submit="doneEditing(todo)">
