@@ -40,19 +40,19 @@ todomvc.factory('todoStorage', function (LiveOak, $rootScope) {
 
     return {
         query: function (query, success, error) {
-            LiveOak.readMembers('/todomvc/storage/todos', { query: query, sort: 'user,title', success: wrapSuccess(success, 200), error: wrapError(error) });
+            LiveOak.readMembers('/todomvc-cordova/storage/todos', { query: query, sort: 'user,title', success: wrapSuccess(success, 200), error: wrapError(error) });
         },
 
         remove: function (todo, success, error) {
-            LiveOak.remove('/todomvc/storage/todos', todo, { success: wrapSuccess(success, 200), error: wrapError(error) });
+            LiveOak.remove('/todomvc-cordova/storage/todos', todo, { success: wrapSuccess(success, 200), error: wrapError(error) });
         },
 
         save: function (todo, success, error) {
-            LiveOak.save('/todomvc/storage/todos', todo, { success: wrapSuccess(success, 201), error: wrapError(error) });
+            LiveOak.save('/todomvc-cordova/storage/todos', todo, { success: wrapSuccess(success, 201), error: wrapError(error) });
         },
 
         update: function (todo, success, error) {
-            LiveOak.update('/todomvc/storage/todos', todo, { success: wrapSuccess(success, 200), error: wrapError(error) });
+            LiveOak.update('/todomvc-cordova/storage/todos', todo, { success: wrapSuccess(success, 200), error: wrapError(error) });
         }
     };
 });

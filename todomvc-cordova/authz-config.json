@@ -1,0 +1,13 @@
+{
+    "policies": [
+        {
+            "policyName" : "URIPolicy",
+            "policyResourceEndpoint": "/todomvc-cordova/uriPolicy/authzCheck"
+        },
+        {
+            "policyName" : "ACLPolicy",
+            "policyResourceEndpoint": "/todomvc-cordova/aclPolicy/authzCheck",
+            "includedResourcePrefixes": [ "/todomvc-cordova/storage" ]
+        }  
+    ]
+}

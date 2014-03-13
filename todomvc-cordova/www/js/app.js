@@ -12,17 +12,9 @@ var todomvc = angular.module('todomvc', [ 'ngRoute', 'ngResource' ]);
 var init = function () {
     var liveOak = LiveOak({
         auth: {
-            clientId: 'test-app',
-            realm: 'todomvc',
-            redirectUri: 'http://localhost',
-            success: function () {
-                todomvc.factory('LiveOak', function () {
-                    return liveOak;
-                });
-            },
-            error: function () {
-                alert('authentication failed');
-            }
+            clientId: 'todomvc',
+            realm: 'todomvc-cordova',
+            redirectUri: 'http://localhost'
         }
     });
 
@@ -49,12 +41,10 @@ var init = function () {
             window.plugins.ChildBrowser.close();
 
             liveOak.auth.init(function() {
-                liveOak.auth.loadUserProfile(function() {
-                    todomvc.factory('LiveOak', function () {
-                        return liveOak;
-                    });
-                    angular.bootstrap(document, ["todomvc"]);
+                todomvc.factory('LiveOak', function () {
+                    return liveOak;
                 });
+                angular.bootstrap(document, ["todomvc"]);
             }, function(e) {
                 alert('auth failed: ' + e);
             });
@@ -66,4 +56,3 @@ var init = function () {
 }
 
 document.addEventListener('deviceready', init, false);
-
