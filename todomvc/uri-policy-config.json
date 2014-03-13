@@ -4,7 +4,7 @@
             "priority": 2,
             "uriPattern": "*",
             "requestType": "*",
-            "allowedRoles": "'test-app/admin'"
+            "allowedRoles": "'todomvc/admin'"
         },
         {
             "priority": 1,
@@ -29,14 +29,14 @@
             "uriPattern": "/todomvc/storage*",
             "requestType": "READ",
             "queryParamsCondition": "parseJson($q).get('user') == $securityContext.subject",
-            "allowedRoles": "'test-app/user'"
+            "allowedRoles": "'todomvc/user'"
         },
         {
             "priority": 1,
             "uriPattern": "/todomvc/storage*",
             "requestType": "CREATE",
             "queryParamsCondition": "$requestState.getProperty('user') ==  $securityContext.subject",
-            "allowedRoles": "'test-app/user'"
+            "allowedRoles": "'todomvc/user'"
         },
         {
             "priority": 1,

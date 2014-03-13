@@ -39,14 +39,17 @@
         for (var i in liveOak.auth.resourceAccess) {
             content += '<li><strong>' + i + ':</strong> ' + liveOak.auth.resourceAccess[i].roles + '</li>';
         }
-        content += '</ul>'
+        content += '</ul>';
 
-                + '<h2>Token</h2>'
+        content += '<h2>Token</h2>'
                 + '<pre>' + JSON.stringify(liveOak.auth.tokenParsed, undefined, 4) + '</pre>';
+
+        content += '<h2>IDToken</h2>'
+                + '<pre>' + JSON.stringify(liveOak.auth.idToken, undefined, 4) + '</pre>';
 
         document.getElementById('content').innerHTML = content;
 
-        liveOak.auth.getUserProfile({ success: authProfileLoaded, error: authProfileLoadedError });
+        //liveOak.auth.getUserProfile({ success: authProfileLoaded, error: authProfileLoadedError });
     }
 
     var authError = function (errorDetails) {
@@ -76,16 +79,13 @@
 
     var liveOak = LiveOak({
         auth: {
-            clientId: 'test-app',
-            clientSecret: 'password',
+            clientId: 'auth',
             realm: 'auth',
             onload: 'check-sso',
-            success: authSuccess,
-            error: authError
         }
     });
 
-    liveOak.auth.init();
+    liveOak.auth.init(authSuccess, authError);
 
 </script>
 </body>

@@ -22,7 +22,7 @@
             "priority": 1,
             "uriPattern": "/auth/storage*",
             "requestType": "READ",
-            "allowedRoles": "'test-app/user'"
+            "allowedRoles": "'auth/user'"
         }
     ]
 }

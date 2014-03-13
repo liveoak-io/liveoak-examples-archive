@@ -12,29 +12,30 @@ var todomvc = angular.module('todomvc', [ 'ngRoute', 'ngResource' ]);
 angular.element(document).ready(function () {
     var liveOak = LiveOak({
         auth: {
-            clientId: 'test-app',
+            clientId: 'todomvc',
             realm: 'todomvc',
             onload: 'login-required'
         }
     });
 
     liveOak.auth.init(function () {
-        liveOak.auth.loadUserProfile(function() {
-            todomvc.factory('LiveOak', function () {
-                return liveOak;
+        if (liveOak.auth.hasResourceRole('admin', 'todomvc')) {
+            liveOak.connect(function () {
+                liveOak.create('/todomvc/storage', { id: 'todos' }, {
+                    success: function (data) {
+                    },
+                    error: function (data) {
+                    }
+                });
             });
-            angular.bootstrap(document, ["todomvc"]);
+        }
+
+        todomvc.factory('LiveOak', function () {
+            return liveOak;
         });
+
+        angular.bootstrap(document, ["todomvc"]);
     }, function () {
         alert('authentication failed');
-    });
-
-    liveOak.connect(function () {
-        liveOak.create('/todomvc/storage', { id: 'todos' }, {
-            success: function (data) {
-            },
-            error: function (data) {
-            }
-        });
     });
 });

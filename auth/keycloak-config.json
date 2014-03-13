@@ -1,10 +1,6 @@
 {
-    "id": "todomvc",
-    "realm": "todomvc",
+    "realm": "auth",
     "enabled": true,
-    "tokenLifespan": 3600,
-    "accessCodeLifespan": 10,
-    "accessCodeLifespanUserAction": 6000,
     "sslNotRequired": true,
     "registrationAllowed": true,
     "resetPasswordAllowed": true,
@@ -12,6 +8,7 @@
 
     "users" : [
         {
+            "id" : "bob",
             "username" : "bob",
             "enabled": true,
             "credentials" : [
@@ -20,6 +17,7 @@
             ]
         },
         {
+            "id" : "john",
             "username" : "john",
             "enabled": true,
             "credentials" : [
@@ -28,6 +26,7 @@
             ]
         },
         {
+            "id" : "mary",
             "username" : "mary",
             "enabled": true,
             "credentials" : [
@@ -39,7 +38,7 @@
 
     "roles": {
         "application" : {
-            "test-app" : [
+            "auth" : [
                 {
                     "name": "user",
                     "description": "Have Test-app User privileges"
@@ -54,22 +53,19 @@
 
     "applications": [
         {
-            "name": "test-app",
+            "name": "auth",
             "enabled": true,
+            "baseUrl": "http://localhost:8080/auth",
+            "redirectUris": [ "http://localhost:8080/auth/*" ],
             "webOrigins": [ "http://localhost:8080" ],
-            "redirectUris": [ "http://localhost:8080/auth" ],
-            "credentials": [
-                {
-                    "type": "secret",
-                    "value": "password"
-                }
-            ],
-            "defaultRoles": [ "user" ]
+            "publicClient": true,
+            "defaultRoles": [ "user" ],
+            "claims": { "name": true, "username": true, "email": true }
         }
     ],
 
     "applicationRoleMappings": {
-        "test-app": [
+        "auth": [
             {
                 "username": "bob",
                 "roles": [ "user", "admin" ]
