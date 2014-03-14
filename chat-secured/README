@@ -1,0 +1,19 @@
+* Ensure that you have a MongoDB instance running and available to the mBaaS.
+
+* Assuming you have LiveOak built, from this directory, launch it with a trailing
+  period so it knows to deploy this directory upon startup.
+
+	$ liveoak .
+
+* http://127.0.0.1:8080/chat-secured
+
+Users
+-----
+- User 'bob' with password 'password' is admin and can do anything (subscribe, create new chat messages, view all messages received by subscription)
+
+- User 'mary' with password 'password' doesn't have any roles and she can't do anything (view existing messages, create new messages, subscribe to receive messages)
+
+- User 'john' with password 'password' is normal user. He can view existing messages, create new messages and subscribe to receive messages. But he is not authorized
+to receive subscription from messages, which text starts with "secret:". For example message like "secret: This is messages viewable only by admin"
+
+
