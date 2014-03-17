@@ -14,7 +14,7 @@ Steps to run the application
 
 * Run liveoak launcher with command like (replace <liveoak> with directory where you have liveoak sources and <liveoak examples> with directory of Liveoak example sources:
 
-	$ <liveoak>/launcher/bin/liveoak <liveoak examples>/chat-secured
+	$ _liveoak_/launcher/bin/liveoak _liveoak examples_/chat-secured
 
 * Open your browser at http://localhost:8080/chat-secured
 
