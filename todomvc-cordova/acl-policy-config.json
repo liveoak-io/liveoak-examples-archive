@@ -1,0 +1,12 @@
+{
+    "aclRules": [
+        {
+            "requestType": "UPDATE",
+            "allowedUserAttribute": "user"            
+        },
+        {
+            "requestType": "DELETE",
+            "allowedUserAttribute": "user"
+        }
+    ]
+}

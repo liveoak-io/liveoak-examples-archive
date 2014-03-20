@@ -13,12 +13,11 @@ angular.element(document).ready(function () {
     var liveOak = LiveOak({
         auth: {
             clientId: 'todomvc',
-            realm: 'todomvc',
-            onload: 'login-required'
+            realm: 'todomvc'
         }
     });
 
-    liveOak.auth.init(function () {
+    liveOak.auth.init('login-required').success(function () {
         if (liveOak.auth.hasResourceRole('admin', 'todomvc')) {
             liveOak.connect(function () {
                 liveOak.create('/todomvc/storage', { id: 'todos' }, {

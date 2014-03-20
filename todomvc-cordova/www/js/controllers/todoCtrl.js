@@ -30,15 +30,15 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
     $scope.auth = LiveOak.auth;
     $scope.user = LiveOak.auth.subject;
 
-    var profile = LiveOak.auth.profile;
-    if (profile.firstName && profile.lastName) {
-        $scope.displayName = profile.firstName + ' ' + profile.lastName;
-    } else if (profile.firstName) {
-        $scope.displayName = profile.firstName;
-    } else if (profile.lastName) {
-        $scope.displayName = profile.lastName;
+    var profile = LiveOak.auth.idToken;
+    if (profile.given_name && profile.family_name) {
+        $scope.displayName = profile.given_name + ' ' + profile.family_name;
+    } else if (profile.given_name) {
+        $scope.displayName = profile.given_name;
+    } else if (profile.family_name) {
+        $scope.displayName = profile.family_name;
     } else {
-        $scope.displayName = profile.username;
+        $scope.displayName = profile.preferred_username;
     }
 
     $scope.showAll = LiveOak.auth.hasResourceRole('admin');
@@ -81,7 +81,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
         todoStorage.save({
             title: newTodo,
             completed: false,
-            user: $scope.subject
+            user: $scope.user
         }, function (todo) {
             $scope.todos.push(todo);
         });

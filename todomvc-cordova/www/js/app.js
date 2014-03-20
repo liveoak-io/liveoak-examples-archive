@@ -11,59 +11,35 @@ var todomvc = angular.module('todomvc', [ 'ngRoute', 'ngResource' ]);
 
 var init = function () {
     var liveOak = LiveOak({
-        auth: {
-            clientId: 'test-app',
-            realm: 'todomvc',
-            redirectUri: 'http://localhost',
-            success: function () {
-                todomvc.factory('LiveOak', function () {
-                    return liveOak;
-                });
-            },
-            error: function () {
-                alert('authentication failed');
-            }
-        }
+        auth: 'keycloak.json'
     });
 
-    window.plugins.ChildBrowser.onLocationChange = function (url) {
-        if (window.oauth.callback) {
-            return;
-        }
-
-        var code = /code=([^&]+)/.exec(url);
-        var error = /error=([^&]+)/.exec(url);
-        var state = /state=([^&]+)/.exec(url);
-
-        if (code || error) {
-            if (code && state) {
-                window.oauth.code = code[1];
-                window.oauth.state = state[1];
-                window.oauth.callback = true;
-            } else if (error && state) {
-                window.oauth.error = error[1];
-                window.oauth.state = state[1];
-                window.oauth.callback = true;
-            }
-
-            window.plugins.ChildBrowser.close();
-
-            liveOak.auth.init(function() {
-                liveOak.auth.loadUserProfile(function() {
-                    todomvc.factory('LiveOak', function () {
-                        return liveOak;
-                    });
-                    angular.bootstrap(document, ["todomvc"]);
-                });
-            }, function(e) {
-                alert('auth failed: ' + e);
-            });
-        }
+    liveOak.auth.onAuthLogout = function() {
+        window.open('', '_self');
     }
 
-    var loginUrl = liveOak.auth.createLoginUrl();
-    window.plugins.ChildBrowser.showWebPage(loginUrl, { showLocationBar: false });
+    liveOak.auth.onAuthError = function() {
+        window.open('', '_self');
+    }
+
+    liveOak.auth.init('login-required').success(function () {
+        if (liveOak.auth.hasResourceRole('admin', 'todomvc')) {
+            liveOak.connect(function () {
+                liveOak.create('/todomvc-cordova/storage', { id: 'todos' }, {
+                    success: function (data) {
+                    },
+                    error: function (data) {
+                    }
+                });
+            });
+        }
+
+        todomvc.factory('LiveOak', function () {
+            return liveOak;
+        });
+
+        angular.bootstrap(document, ["todomvc"]);
+    });
 }
 
 document.addEventListener('deviceready', init, false);
-

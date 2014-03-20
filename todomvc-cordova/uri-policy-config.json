@@ -1,0 +1,49 @@
+{
+    "uriRules": [
+        {
+            "priority": 2,
+            "uriPattern": "*",
+            "requestType": "*",
+            "allowedRoles": "'todomvc/admin'"
+        },
+        {
+            "priority": 1,
+            "uriPattern": "/todomvc-cordova",
+            "requestType": "READ",
+            "allowedUsers": "'*'"
+        },
+        {
+            "priority": 1,
+            "uriPattern": "/todomvc-cordova/app*",
+            "requestType": "READ",
+            "allowedUsers": "'*'"
+        },
+        {
+            "priority": 1,
+            "uriPattern": "/todomvc-cordova/client/liveoak.js",
+            "requestType": "READ",
+            "allowedUsers": "'*'"
+        },
+        {
+            "priority": 1,
+            "uriPattern": "/todomvc-cordova/storage*",
+            "requestType": "READ",
+            "queryParamsCondition": "parseJson($q).get('user') == $securityContext.subject",
+            "allowedRoles": "'todomvc/user'"
+        },
+        {
+            "priority": 1,
+            "uriPattern": "/todomvc-cordova/storage*",
+            "requestType": "CREATE",
+            "queryParamsCondition": "$requestState.getProperty('user') ==  $securityContext.subject",
+            "allowedRoles": "'todomvc/user'"
+        },
+        {
+            "priority": 1,
+            "uriPattern": "/todomvc-cordova/storage*",
+            "requestType": "UPDATE",
+            "queryParamsCondition": "$requestState.getProperty('user') !=  $securityContext.subject",
+            "deniedUsers": "'*'"
+        }
+    ]
+}

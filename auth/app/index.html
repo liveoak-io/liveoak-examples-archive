@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<div id="container" style="display: none;">
 <a href="#" onclick="invokeStorage()">Invoke storage</a>
 <div id="storage"></div>
 
@@ -18,6 +19,7 @@
     <a href="#" onclick="liveOak.auth.login()">Login</a>
 </div>
 <div id="profile"></div>
+</div>
 <script>
     var invokeStorage = function () {
         liveOak.read('/auth/storage', { success: function (data) {
@@ -80,12 +82,16 @@
     var liveOak = LiveOak({
         auth: {
             clientId: 'auth',
-            realm: 'auth',
-            onload: 'check-sso',
+            realm: 'auth'
         }
     });
 
-    liveOak.auth.init(authSuccess, authError);
+    liveOak.auth.onAuthSuccess = authSuccess;
+    liveOak.auth.onAuthError = authError;
+
+    liveOak.auth.init('check-sso').success(function() {
+        document.getElementById('container').style.display = 'block';
+    });
 
 </script>
 </body>
