@@ -53,8 +53,7 @@
             "name": "todomvc",
             "enabled": true,
             "publicClient": true,
-            "redirectUris": [ "http://localhost", "http://172.17.130.77:8080/*" ],
-            "webOrigins": [ "http://172.17.130.77:8080" ],
+            "redirectUris": [ "http://localhost" ],
             "defaultRoles": [ "user" ],
             "claims": { "name": true, "username": true, "email": true }
         }
