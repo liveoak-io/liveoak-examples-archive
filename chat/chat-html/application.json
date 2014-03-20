@@ -22,6 +22,15 @@
         host: 'localhost',
         port: 27017
       }
-    }
+    },
+
+/*  push: {
+    type: 'ups',
+    config: {
+      upsServerURL: 'insert the UPS Server URL here',
+      applicationId: 'insert the Application ID here',
+      masterSecret: 'insert the Master Secret here'
+      }
+    } */
   }
 }
