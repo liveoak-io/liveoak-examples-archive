@@ -11,14 +11,17 @@ var todomvc = angular.module('todomvc', [ 'ngRoute', 'ngResource' ]);
 
 var init = function () {
     var liveOak = LiveOak({
-        auth: 'keycloak.json'
+        auth: {
+            realm: 'todomvc-cordova',
+            clientId: 'todomvc'
+        }
     });
 
-    liveOak.auth.onAuthLogout = function() {
+    liveOak.auth.onAuthLogout = function () {
         window.open('', '_self');
     }
 
-    liveOak.auth.onAuthError = function() {
+    liveOak.auth.onAuthError = function () {
         window.open('', '_self');
     }
 

@@ -10,10 +10,6 @@ Start LiveOak bound to an IP address available to the phone or emulator. For exa
 
     liveoak -b 192.168.0.10 <LIVEOAK EXAMPLES>/todomvc-cordova
 
-Open the Keycloak admin console (for example http://192.168.0.10:8383/auth/)
-
-Navigate to applications, click on 'todomvc', select 'Installation' and in the 'Format option' drop-down select 'keycloak.json'. Download this file to the www folder.
-
 Edit 'www/index.html' and change the URL for 'liveoak.js'.
 
 
