@@ -29,7 +29,9 @@ Galleria.ready(function () {
       // display image file as thumbnail when done loading it
       reader.onload = function (e) {
         // add thumbnail
-        G.push({ image: e.target.result});
+        resize(e.target.result, function(dataUrl) {
+          G.push({ image: dataUrl});
+        });
       };
       // start loading the file for display
       reader.readAsDataURL(file);
@@ -38,6 +40,42 @@ Galleria.ready(function () {
       upload(fileId(file), file);
     }
   };
+
+  var resize = function (dataUrl, callback) {
+    // resize image
+    var tmpImg = new Image();
+    tmpImg.src = dataUrl;
+    tmpImg.onload = function() {
+      var w = tmpImg.width;
+      var h = tmpImg.height;
+
+      var maxW = 1024;
+      var maxH = 800;
+
+      if (w > h) {
+        if (w > maxW) {
+          h *= maxW / w;
+          w = maxW;
+        }
+      } else {
+        if (h > maxH) {
+          w *= maxH / h;
+          h = maxH;
+        }
+      }
+
+      if (w < tmpImg.width) {
+        var canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(tmpImg, 0, 0, w, h);
+        callback(canvas.toDataURL("image/jpeg"));
+      } else {
+        callback(dataUrl);
+      }
+    }
+  }
 
   var request = function (method, url, blob, success, error) {
     var req = new XMLHttpRequest();
@@ -96,20 +134,20 @@ Galleria.ready(function () {
   };
 
   var formatDate = function (date) {
-    var year = date.getFullYear();
-
-    var month = date.getMonth() + 1;
-    if (month < 10) {
-      month = '0' + month;
-    }
-    var day = date.getDate();
-    if (day < 10) {
-      day = '0' + day;
-    }
-
-    return year + month + day;
+    return date.getFullYear()
+        + format00(date.getMonth() + 1)
+        + format00(date.getDate())
+        + format00(date.getHours())
+        + format00(date.getMinutes())
+        + format00(date.getSeconds());
   };
 
+  var format00 = function (val) {
+    if (val < 10) {
+      val = '0' + val;
+    }
+    return '' + val;
+  }
 
   // add plus button
   var plusBtn = $('<div class="galleria-image-add"></div>');
@@ -132,7 +170,9 @@ Galleria.ready(function () {
     var items = response._members || [];
     items.forEach(function (item) {
       // add thumbnail
-      G.push({ image: DRIVE_ROOT + '/' + item.filename});
+      resize(DRIVE_ROOT + '/' + item.filename, function(dataUrl) {
+        G.push({ image: dataUrl});
+      });
     });
   }, function (error) {
     console.log("error: " + error);

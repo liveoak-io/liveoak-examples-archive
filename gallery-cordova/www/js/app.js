@@ -14,35 +14,72 @@ Galleria.run('.galleria', {swipe: 'disabled'});
 Galleria.ready(function () {
   var G = this;
 
-  var selectCallback = function (e) {
-    // FileList object
-    var files = e.target.files;
+  var nativeSelectCallback = function (uri) {
+    console.log('nativeSelectCallback() url: ' + uri);
 
-    for (var i = 0, file; file = files[i]; i++) {
+    var reader = new FileReader();
 
-      // if not image, skip it
-      if (!file.type.match('image.*')) {
-        continue;
+    // display image file as thumbnail when done loading it
+    reader.onload = function (e) {
+      // add thumbnail
+      console.log('reader.onload: ' + e.target.result);
+
+      resize(e.target.result, function(dataUrl) {
+        G.push({ image: dataUrl});
+      });
+    };
+
+    window.resolveLocalFileSystemURL(uri, function(entry) {
+      entry.file(function(file) {
+        // start loading the file for display
+        reader.readAsDataURL(file);
+
+        // also start uploading the file
+        uploadNative(fileId(file), file);
+
+      }, logCallback);
+    }, logCallback);
+  }
+
+  var resize = function (dataUrl, callback) {
+    // resize image
+    var tmpImg = new Image();
+    tmpImg.src = dataUrl;
+    tmpImg.onload = function() {
+      var w = tmpImg.width;
+      var h = tmpImg.height;
+
+      var maxW = 1024;
+      var maxH = 800;
+
+      if (w > h) {
+        if (w > maxW) {
+          h *= maxW / w;
+          w = maxW;
+        }
+      } else {
+        if (h > maxH) {
+          w *= maxH / h;
+          h = maxH;
+        }
       }
 
-      var reader = new FileReader();
-
-      // display image file as thumbnail when done loading it
-      reader.onload = function (e) {
-        // add thumbnail
-        G.push({ image: e.target.result});
-      };
-      // start loading the file for display
-      reader.readAsDataURL(file);
-
-      // also start uploading the file
-      upload(fileId(file), file);
+      if (w < tmpImg.width) {
+        var canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(tmpImg, 0, 0, w, h);
+        callback(canvas.toDataURL("image/jpeg"));
+      } else {
+        callback(dataUrl);
+      }
     }
-  };
+  }
 
   var pickImages = function() {
     console.log('pickImages()');
-    navigator.camera.getPicture(selectCallback, logCallback, {
+    navigator.camera.getPicture(nativeSelectCallback, logCallback, {
       quality: 50,
       destinationType: navigator.camera.DestinationType.FILE_URI,
       sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
@@ -87,7 +124,11 @@ Galleria.ready(function () {
     }
 
     if (blob) {
-      req.send(blob);
+      if (blob.contentBuffer) {
+        req.send(blob.contentBuffer);
+      } else {
+        req.send(blob);
+      }
     } else {
       req.send();
     }
@@ -97,8 +138,21 @@ Galleria.ready(function () {
     console.log(msg);
   }
 
-  var upload = function (id, file, success, error) {
-    request('PUT', DRIVE_ROOT + '/' + id, file, success ? success : logCallback, error ? error : logCallback);
+  var uploadNative = function (id, file, success, error) {
+    // TODO: slice the file into manageable chunks, and send them one by one to the server
+    //var slice = file.slice(0, file.size);
+    var slice = file;
+
+    // read each slice as ByteArray and upload using
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      // upload ByteArray content
+      console.log('reader.onload for slice');
+      request('PUT', DRIVE_ROOT + '/' + id, {contentBuffer: new Uint8Array(e.target.result), type: file.type}, success ? success : logCallback, error ? error : logCallback);
+    };
+
+    reader.readAsArrayBuffer(slice);
   }
 
   var fileId = function (file) {
@@ -106,20 +160,20 @@ Galleria.ready(function () {
   };
 
   var formatDate = function (date) {
-    var year = date.getFullYear();
-
-    var month = date.getMonth() + 1;
-    if (month < 10) {
-      month = '0' + month;
-    }
-    var day = date.getDate();
-    if (day < 10) {
-      day = '0' + day;
-    }
-
-    return year + month + day;
+    return date.getFullYear()
+        + format00(date.getMonth() + 1)
+        + format00(date.getDate())
+        + format00(date.getHours())
+        + format00(date.getMinutes())
+        + format00(date.getSeconds());
   };
 
+  var format00 = function (val) {
+    if (val < 10) {
+      val = '0' + val;
+    }
+    return '' + val;
+  }
 
   // add plus button
   var plusBtn = $('<div class="galleria-image-add"></div>');
@@ -138,15 +192,16 @@ Galleria.ready(function () {
   });
 
   //uploadBtn.change(selectCallback, false);  // why doesn't this work?
-  document.getElementById('files').addEventListener('change', selectCallback, false);
-
+  //document.getElementById('files').addEventListener('change', selectCallback, false);
 
   // get current list of files from gridfs
   request('GET', DRIVE_ROOT + '?fields=*(*)', null, function (response) {
     var items = response._members || [];
     items.forEach(function (item) {
       // add thumbnail
-      G.push({ image: DRIVE_ROOT + '/' + item.filename});
+      resize(DRIVE_ROOT + '/' + item.filename, function(dataUrl) {
+        G.push({ image: dataUrl});
+      });
     });
   }, function (error) {
     console.log("error: " + error);
