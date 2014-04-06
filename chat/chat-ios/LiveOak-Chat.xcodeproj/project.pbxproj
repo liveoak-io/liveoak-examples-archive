@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A3FAB9753DAB6579D18FC7F /* LOChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA803FB941144B8937465 /* LOChatsViewController.m */; };
+		6F34DB9518F175D2000D89AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F34DB9418F175D2000D89AB /* Main.storyboard */; };
+		6F7407DA18EEE8AD00252A8B /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7407D118EEE8AD00252A8B /* ChatController.m */; };
+		6F7407DB18EEE8AD00252A8B /* ChatInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7407D318EEE8AD00252A8B /* ChatInput.m */; };
+		6F7407DC18EEE8AD00252A8B /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7407D518EEE8AD00252A8B /* MessageCell.m */; };
+		6F7407DD18EEE8AD00252A8B /* Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7407D718EEE8AD00252A8B /* Previous.png */; };
+		6F7407DE18EEE8AD00252A8B /* TopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7407D918EEE8AD00252A8B /* TopBar.m */; };
+		6FA28BF118F019D5008A30DA /* LOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA28BF018F019D5008A30DA /* LOLoginViewController.m */; };
+		6FB3E81018E6D47E0075582F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB3E80F18E6D47E0075582F /* Foundation.framework */; };
+		6FB3E81218E6D47E0075582F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB3E81118E6D47E0075582F /* CoreGraphics.framework */; };
+		6FB3E81418E6D47E0075582F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB3E81318E6D47E0075582F /* UIKit.framework */; };
+		6FB3E81A18E6D47E0075582F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FB3E81818E6D47E0075582F /* InfoPlist.strings */; };
+		6FB3E81C18E6D47E0075582F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB3E81B18E6D47E0075582F /* main.m */; };
+		6FB3E82018E6D47E0075582F /* LOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB3E81F18E6D47E0075582F /* LOAppDelegate.m */; };
+		6FB3E82218E6D47E0075582F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 6FB3E82118E6D47E0075582F /* Podfile */; };
+		6FB3E82618E6D47E0075582F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB3E82518E6D47E0075582F /* Images.xcassets */; };
+		6FB3E82D18E6D47E0075582F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB3E82C18E6D47E0075582F /* XCTest.framework */; };
+		6FB3E82E18E6D47E0075582F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB3E80F18E6D47E0075582F /* Foundation.framework */; };
+		6FB3E82F18E6D47E0075582F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB3E81318E6D47E0075582F /* UIKit.framework */; };
+		6FB3E83718E6D47E0075582F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FB3E83518E6D47E0075582F /* InfoPlist.strings */; };
+		6FB3E83918E6D47E0075582F /* LiveOak_ChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB3E83818E6D47E0075582F /* LiveOak_ChatTests.m */; };
+		6FB9E74E18E6F2700066DD02 /* LOAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9E74D18E6F2700066DD02 /* LOAPIClient.m */; };
+		7177BFE32FCA44A8A87DDCCD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1606CB0542B443BCA628B245 /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6FB3E83018E6D47E0075582F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6FB3E80418E6D47E0075582F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6FB3E80B18E6D47E0075582F;
+			remoteInfo = "LiveOak-Chat";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1606CB0542B443BCA628B245 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		31FEDCC5127D48DC9CADD35B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		3A3FA803FB941144B8937465 /* LOChatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LOChatsViewController.m; path = Controllers/LOChatsViewController.m; sourceTree = "<group>"; };
+		3A3FA811D9900419D6C31C81 /* LOChatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LOChatsViewController.h; path = Controllers/LOChatsViewController.h; sourceTree = "<group>"; };
+		6F34DB9418F175D2000D89AB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		6F7407D018EEE8AD00252A8B /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
+		6F7407D118EEE8AD00252A8B /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
+		6F7407D218EEE8AD00252A8B /* ChatInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInput.h; sourceTree = "<group>"; };
+		6F7407D318EEE8AD00252A8B /* ChatInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInput.m; sourceTree = "<group>"; };
+		6F7407D418EEE8AD00252A8B /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		6F7407D518EEE8AD00252A8B /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		6F7407D618EEE8AD00252A8B /* MyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMacros.h; sourceTree = "<group>"; };
+		6F7407D718EEE8AD00252A8B /* Previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Previous.png; sourceTree = "<group>"; };
+		6F7407D818EEE8AD00252A8B /* TopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBar.h; sourceTree = "<group>"; };
+		6F7407D918EEE8AD00252A8B /* TopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBar.m; sourceTree = "<group>"; };
+		6FA28BEF18F019D5008A30DA /* LOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LOLoginViewController.h; path = Controllers/LOLoginViewController.h; sourceTree = "<group>"; };
+		6FA28BF018F019D5008A30DA /* LOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LOLoginViewController.m; path = Controllers/LOLoginViewController.m; sourceTree = "<group>"; };
+		6FB3E80C18E6D47E0075582F /* LiveOak-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiveOak-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FB3E80F18E6D47E0075582F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6FB3E81118E6D47E0075582F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6FB3E81318E6D47E0075582F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6FB3E81718E6D47E0075582F /* LiveOak-Chat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LiveOak-Chat-Info.plist"; sourceTree = "<group>"; };
+		6FB3E81918E6D47E0075582F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6FB3E81B18E6D47E0075582F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6FB3E81D18E6D47E0075582F /* LiveOak-Chat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LiveOak-Chat-Prefix.pch"; sourceTree = "<group>"; };
+		6FB3E81E18E6D47E0075582F /* LOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOAppDelegate.h; sourceTree = "<group>"; };
+		6FB3E81F18E6D47E0075582F /* LOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LOAppDelegate.m; sourceTree = "<group>"; };
+		6FB3E82118E6D47E0075582F /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		6FB3E82518E6D47E0075582F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6FB3E82B18E6D47E0075582F /* LiveOak-ChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LiveOak-ChatTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FB3E82C18E6D47E0075582F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6FB3E83418E6D47E0075582F /* LiveOak-ChatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LiveOak-ChatTests-Info.plist"; sourceTree = "<group>"; };
+		6FB3E83618E6D47E0075582F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6FB3E83818E6D47E0075582F /* LiveOak_ChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveOak_ChatTests.m; sourceTree = "<group>"; };
+		6FB9E74C18E6F2700066DD02 /* LOAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LOAPIClient.h; path = Service/LOAPIClient.h; sourceTree = "<group>"; };
+		6FB9E74D18E6F2700066DD02 /* LOAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LOAPIClient.m; path = Service/LOAPIClient.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6FB3E80918E6D47E0075582F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FB3E81218E6D47E0075582F /* CoreGraphics.framework in Frameworks */,
+				6FB3E81418E6D47E0075582F /* UIKit.framework in Frameworks */,
+				6FB3E81018E6D47E0075582F /* Foundation.framework in Frameworks */,
+				7177BFE32FCA44A8A87DDCCD /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FB3E82818E6D47E0075582F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FB3E82D18E6D47E0075582F /* XCTest.framework in Frameworks */,
+				6FB3E82F18E6D47E0075582F /* UIKit.framework in Frameworks */,
+				6FB3E82E18E6D47E0075582F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6F7407CE18EEE8A100252A8B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6F7407CF18EEE8AD00252A8B /* ChatController */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		6F7407CF18EEE8AD00252A8B /* ChatController */ = {
+			isa = PBXGroup;
+			children = (
+				6F7407D018EEE8AD00252A8B /* ChatController.h */,
+				6F7407D118EEE8AD00252A8B /* ChatController.m */,
+				6F7407D218EEE8AD00252A8B /* ChatInput.h */,
+				6F7407D318EEE8AD00252A8B /* ChatInput.m */,
+				6F7407D418EEE8AD00252A8B /* MessageCell.h */,
+				6F7407D518EEE8AD00252A8B /* MessageCell.m */,
+				6F7407D618EEE8AD00252A8B /* MyMacros.h */,
+				6F7407D718EEE8AD00252A8B /* Previous.png */,
+				6F7407D818EEE8AD00252A8B /* TopBar.h */,
+				6F7407D918EEE8AD00252A8B /* TopBar.m */,
+			);
+			name = ChatController;
+			path = Utils/ChatController;
+			sourceTree = "<group>";
+		};
+		6FB3E80318E6D47E0075582F = {
+			isa = PBXGroup;
+			children = (
+				6FB3E81518E6D47E0075582F /* LiveOak-Chat */,
+				6FB3E83218E6D47E0075582F /* LiveOak-ChatTests */,
+				6FB3E80E18E6D47E0075582F /* Frameworks */,
+				6FB3E80D18E6D47E0075582F /* Products */,
+				31FEDCC5127D48DC9CADD35B /* Pods.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		6FB3E80D18E6D47E0075582F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6FB3E80C18E6D47E0075582F /* LiveOak-Chat.app */,
+				6FB3E82B18E6D47E0075582F /* LiveOak-ChatTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6FB3E80E18E6D47E0075582F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6FB3E80F18E6D47E0075582F /* Foundation.framework */,
+				6FB3E81118E6D47E0075582F /* CoreGraphics.framework */,
+				6FB3E81318E6D47E0075582F /* UIKit.framework */,
+				6FB3E82C18E6D47E0075582F /* XCTest.framework */,
+				1606CB0542B443BCA628B245 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6FB3E81518E6D47E0075582F /* LiveOak-Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6FB9E74B18E6F24C0066DD02 /* Service */,
+				6FB9E74A18E6F2430066DD02 /* Controllers */,
+				6F7407CE18EEE8A100252A8B /* Utils */,
+				6FB3E81E18E6D47E0075582F /* LOAppDelegate.h */,
+				6FB3E81F18E6D47E0075582F /* LOAppDelegate.m */,
+				6F34DB9418F175D2000D89AB /* Main.storyboard */,
+				6FB3E82118E6D47E0075582F /* Podfile */,
+				6FB3E82518E6D47E0075582F /* Images.xcassets */,
+				6FB3E81618E6D47E0075582F /* Supporting Files */,
+			);
+			path = "LiveOak-Chat";
+			sourceTree = "<group>";
+		};
+		6FB3E81618E6D47E0075582F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6FB3E81718E6D47E0075582F /* LiveOak-Chat-Info.plist */,
+				6FB3E81818E6D47E0075582F /* InfoPlist.strings */,
+				6FB3E81B18E6D47E0075582F /* main.m */,
+				6FB3E81D18E6D47E0075582F /* LiveOak-Chat-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6FB3E83218E6D47E0075582F /* LiveOak-ChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				6FB3E83818E6D47E0075582F /* LiveOak_ChatTests.m */,
+				6FB3E83318E6D47E0075582F /* Supporting Files */,
+			);
+			path = "LiveOak-ChatTests";
+			sourceTree = "<group>";
+		};
+		6FB3E83318E6D47E0075582F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6FB3E83418E6D47E0075582F /* LiveOak-ChatTests-Info.plist */,
+				6FB3E83518E6D47E0075582F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6FB9E74A18E6F2430066DD02 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6FA28BEF18F019D5008A30DA /* LOLoginViewController.h */,
+				6FA28BF018F019D5008A30DA /* LOLoginViewController.m */,
+				3A3FA811D9900419D6C31C81 /* LOChatsViewController.h */,
+				3A3FA803FB941144B8937465 /* LOChatsViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6FB9E74B18E6F24C0066DD02 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6FB9E74C18E6F2700066DD02 /* LOAPIClient.h */,
+				6FB9E74D18E6F2700066DD02 /* LOAPIClient.m */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6FB3E80B18E6D47E0075582F /* LiveOak-Chat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6FB3E83C18E6D47E0075582F /* Build configuration list for PBXNativeTarget "LiveOak-Chat" */;
+			buildPhases = (
+				2E0363A0620C4303B30D90FA /* Check Pods Manifest.lock */,
+				6FB3E80818E6D47E0075582F /* Sources */,
+				6FB3E80918E6D47E0075582F /* Frameworks */,
+				6FB3E80A18E6D47E0075582F /* Resources */,
+				1A4CA1E195184D008E78D5FF /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LiveOak-Chat";
+			productName = "LiveOak-Chat";
+			productReference = 6FB3E80C18E6D47E0075582F /* LiveOak-Chat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6FB3E82A18E6D47E0075582F /* LiveOak-ChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6FB3E83F18E6D47E0075582F /* Build configuration list for PBXNativeTarget "LiveOak-ChatTests" */;
+			buildPhases = (
+				6FB3E82718E6D47E0075582F /* Sources */,
+				6FB3E82818E6D47E0075582F /* Frameworks */,
+				6FB3E82918E6D47E0075582F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6FB3E83118E6D47E0075582F /* PBXTargetDependency */,
+			);
+			name = "LiveOak-ChatTests";
+			productName = "LiveOak-ChatTests";
+			productReference = 6FB3E82B18E6D47E0075582F /* LiveOak-ChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6FB3E80418E6D47E0075582F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = LO;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = LiveOak;
+				TargetAttributes = {
+					6FB3E80B18E6D47E0075582F = {
+						DevelopmentTeam = 4DPNWUE2RS;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					6FB3E82A18E6D47E0075582F = {
+						TestTargetID = 6FB3E80B18E6D47E0075582F;
+					};
+				};
+			};
+			buildConfigurationList = 6FB3E80718E6D47E0075582F /* Build configuration list for PBXProject "LiveOak-Chat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6FB3E80318E6D47E0075582F;
+			productRefGroup = 6FB3E80D18E6D47E0075582F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6FB3E80B18E6D47E0075582F /* LiveOak-Chat */,
+				6FB3E82A18E6D47E0075582F /* LiveOak-ChatTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6FB3E80A18E6D47E0075582F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FB3E82218E6D47E0075582F /* Podfile in Resources */,
+				6F34DB9518F175D2000D89AB /* Main.storyboard in Resources */,
+				6FB3E82618E6D47E0075582F /* Images.xcassets in Resources */,
+				6F7407DD18EEE8AD00252A8B /* Previous.png in Resources */,
+				6FB3E81A18E6D47E0075582F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FB3E82918E6D47E0075582F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FB3E83718E6D47E0075582F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A4CA1E195184D008E78D5FF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2E0363A0620C4303B30D90FA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6FB3E80818E6D47E0075582F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F7407DB18EEE8AD00252A8B /* ChatInput.m in Sources */,
+				6FB3E81C18E6D47E0075582F /* main.m in Sources */,
+				6FA28BF118F019D5008A30DA /* LOLoginViewController.m in Sources */,
+				6FB9E74E18E6F2700066DD02 /* LOAPIClient.m in Sources */,
+				6F7407DE18EEE8AD00252A8B /* TopBar.m in Sources */,
+				6FB3E82018E6D47E0075582F /* LOAppDelegate.m in Sources */,
+				6F7407DA18EEE8AD00252A8B /* ChatController.m in Sources */,
+				6F7407DC18EEE8AD00252A8B /* MessageCell.m in Sources */,
+				3A3FAB9753DAB6579D18FC7F /* LOChatsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FB3E82718E6D47E0075582F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FB3E83918E6D47E0075582F /* LiveOak_ChatTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6FB3E83118E6D47E0075582F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6FB3E80B18E6D47E0075582F /* LiveOak-Chat */;
+			targetProxy = 6FB3E83018E6D47E0075582F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6FB3E81818E6D47E0075582F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6FB3E81918E6D47E0075582F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6FB3E83518E6D47E0075582F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6FB3E83618E6D47E0075582F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6FB3E83A18E6D47E0075582F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "39EE330A-3878-4103-9653-35017BEB0461";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6FB3E83B18E6D47E0075582F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "39EE330A-3878-4103-9653-35017BEB0461";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6FB3E83D18E6D47E0075582F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31FEDCC5127D48DC9CADD35B /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LiveOak-Chat/LiveOak-Chat-Prefix.pch";
+				INFOPLIST_FILE = "LiveOak-Chat/LiveOak-Chat-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "39EE330A-3878-4103-9653-35017BEB0461";
+				WARNING_CFLAGS = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6FB3E83E18E6D47E0075582F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31FEDCC5127D48DC9CADD35B /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LiveOak-Chat/LiveOak-Chat-Prefix.pch";
+				INFOPLIST_FILE = "LiveOak-Chat/LiveOak-Chat-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "39EE330A-3878-4103-9653-35017BEB0461";
+				WARNING_CFLAGS = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6FB3E84018E6D47E0075582F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LiveOak-Chat.app/LiveOak-Chat";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LiveOak-Chat/LiveOak-Chat-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "LiveOak-ChatTests/LiveOak-ChatTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		6FB3E84118E6D47E0075582F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LiveOak-Chat.app/LiveOak-Chat";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LiveOak-Chat/LiveOak-Chat-Prefix.pch";
+				INFOPLIST_FILE = "LiveOak-ChatTests/LiveOak-ChatTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6FB3E80718E6D47E0075582F /* Build configuration list for PBXProject "LiveOak-Chat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FB3E83A18E6D47E0075582F /* Debug */,
+				6FB3E83B18E6D47E0075582F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6FB3E83C18E6D47E0075582F /* Build configuration list for PBXNativeTarget "LiveOak-Chat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FB3E83D18E6D47E0075582F /* Debug */,
+				6FB3E83E18E6D47E0075582F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6FB3E83F18E6D47E0075582F /* Build configuration list for PBXNativeTarget "LiveOak-ChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FB3E84018E6D47E0075582F /* Debug */,
+				6FB3E84118E6D47E0075582F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6FB3E80418E6D47E0075582F /* Project object */;
+}
