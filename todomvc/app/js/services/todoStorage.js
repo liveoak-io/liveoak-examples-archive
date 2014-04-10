@@ -24,7 +24,7 @@ todomvc.factory('todoStorage', function (LiveOak, $rootScope) {
             $rootScope.lastStatus = response.status;
             var errorMessage = "Error occured! Status: " + response.status + ", Status text: '" + response.statusText + "'";
             if (response.data) {
-                errorMessage += ", Error details: " + JSON.stringify(data.data);
+                errorMessage += ", Error details: " + JSON.stringify(response.data);
             }
             alert(errorMessage);
 
