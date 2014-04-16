@@ -34,6 +34,13 @@
         {
             "priority": 1,
             "uriPattern": "/todomvc/storage*",
+            "requestType": "READ",
+            "queryParamsCondition": "$responseState.getProperty('user') ==  $securityContext.subject",
+            "allowedRoles": "'todomvc/user'"
+        },
+        {
+            "priority": 1,
+            "uriPattern": "/todomvc/storage*",
             "requestType": "CREATE",
             "queryParamsCondition": "$requestState.getProperty('user') ==  $securityContext.subject",
             "allowedRoles": "'todomvc/user'"
