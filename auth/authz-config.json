@@ -2,7 +2,7 @@
     "policies": [
         {
             "policyName" : "URIPolicy",
-            "policyResourceEndpoint": "/auth/uriPolicy/authzCheck"
+            "policyResourceEndpoint": "/auth/uri-policy/authzCheck"
         } 
     ]
 }

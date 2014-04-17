@@ -1,8 +1,8 @@
 {
     "policies": [
         {
-            "policyName" : "URIPolicy",
-            "policyResourceEndpoint": "/todomvc/uriPolicy/authzCheck"
+            "policyName" : "DroolsPolicy",
+            "policyResourceEndpoint": "/todomvc/drools-policy/authzCheck"
         },
         {
             "policyName" : "ACLPolicy",

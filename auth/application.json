@@ -23,8 +23,32 @@
       type: 'security'
     },
 
-    uriPolicy: {
-      type: 'uriPolicy'
+    uri-policy: {
+      type: 'uri-policy',
+      config: {
+        "rules": [
+          {
+            "uriPattern": "/auth",
+            "requestTypes": [ "READ" ],
+            "allowedUsers": [ "*" ]
+          },
+          {
+            "uriPattern": "/auth/app/index.html",
+            "requestTypes": [ "READ" ],
+            "allowedUsers": [ "*" ]
+          },
+          {
+            "uriPattern": "/auth/client*",
+            "requestTypes": [ "*" ],
+            "allowedUsers": [ "*" ]
+          },
+          {
+            "uriPattern": "/auth/storage*",
+            "requestTypes": [ "READ" ],
+            "allowedRoles": [ "auth/user" ]
+          }
+        ]
+      }
     },
 
     storage: {
