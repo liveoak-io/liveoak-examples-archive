@@ -13,7 +13,7 @@ angular.element(document).ready(function () {
     var liveOak = LiveOak({
         auth: {
             clientId: 'todomvc',
-            realm: 'todomvc'
+            realm: 'liveoak-apps'
         }
     });
 

@@ -30,8 +30,8 @@
       type: 'security'
     },
 
-    aclPolicy: {
-      type: 'aclPolicy'
+    acl-policy: {
+      type: 'acl-policy'
     },
 
     drools-policy: {

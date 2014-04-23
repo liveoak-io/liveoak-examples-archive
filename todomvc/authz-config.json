@@ -6,7 +6,7 @@
         },
         {
             "policyName" : "ACLPolicy",
-            "policyResourceEndpoint": "/todomvc/aclPolicy/authzCheck",
+            "policyResourceEndpoint": "/todomvc/acl-policy/authzCheck",
             "includedResourcePrefixes": [ "/todomvc/storage" ]
         }  
     ]
