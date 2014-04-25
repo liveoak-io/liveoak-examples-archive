@@ -34,7 +34,7 @@ Get help from other AngularJS users:
 * [angularjs on Stack Overflow](http://stackoverflow.com/questions/tagged/angularjs)
 * [AngularJS on Twitter](https://twitter.com/angularjs)
 * [AngularjS on Google +](https://plus.google.com/+AngularJS/posts)
-* [AngularjS on Google +](https://plus.google.com/+AngularJS/posts)
+* [Yearofmoo AngularJS articles](http://www.yearofmoo.com/search/?q=Angularjs)
 
 _If you have other helpful links to share, or find any of the links above no longer work, please [let us know](https://github.com/tastejs/todomvc/issues)._
 
