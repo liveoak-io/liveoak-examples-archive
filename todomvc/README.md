@@ -16,7 +16,9 @@ Here are some links you may find helpful:
 * [Applications built with AngularJS](http://builtwith.angularjs.org)
 * [Blog](http://blog.angularjs.org)
 * [FAQ](http://docs.angularjs.org/misc/faq)
-* [AngularJS Meetups](http://www.youtube.com/angularjs)
+* [AngularJS Recipes](https://leanpub.com/recipes-with-angular-js/read)
+* [Practical AngularJS](https://leanpub.com/Practical_AngularJS/read)
+* [Hands-on AngularJs Video Tutorial](https://tutsplus.com/course/hands-on-angular/)
 
 Articles and guides from the community:
 
@@ -31,6 +33,7 @@ Get help from other AngularJS users:
 * [Google Groups mailing list](https://groups.google.com/forum/?fromgroups#!forum/angular)
 * [angularjs on Stack Overflow](http://stackoverflow.com/questions/tagged/angularjs)
 * [AngularJS on Twitter](https://twitter.com/angularjs)
+* [AngularjS on Google +](https://plus.google.com/+AngularJS/posts)
 * [AngularjS on Google +](https://plus.google.com/+AngularJS/posts)
 
 _If you have other helpful links to share, or find any of the links above no longer work, please [let us know](https://github.com/tastejs/todomvc/issues)._
