@@ -20,7 +20,15 @@
     },
 
     authz: {
-      type: 'security'
+      type: 'security',
+      config: {
+        "policies": [
+          {
+            "policyName" : "URIPolicy",
+            "policyResourceEndpoint": "/auth/uri-policy/authzCheck"
+          }
+        ]
+      }
     },
 
     uri-policy: {
