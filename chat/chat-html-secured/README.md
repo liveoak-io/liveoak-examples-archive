@@ -10,11 +10,14 @@ Features
 
 Steps to run the application
 ----------------------------
-* Ensure that you have a MongoDB instance running and available to the on localhost/27017 (Recent liveoak installs and starts MongoDB automatically if you don't have it).
+* Copy the example in the _apps_ directory and start Liveoak
 
-* Run liveoak launcher with command like (replace <liveoak> with directory where you have liveoak sources and <liveoak examples> with directory of Liveoak example sources:
+	$ cp -r _liveoak examples_/chat-html-secured _liveoak_/apps
+	$ sh _liveoak_/bin/standalone.sh
 
-	$ _liveoak_/launcher/bin/liveoak _liveoak examples_/chat-html-secured
+* Add the application in keycloak (Manual step currently required)
+ 	Go to http://localhost:8080/auth/admin/index.html#/realms/liveoak-apps/applications
+	Add Application > "chat-html-secured", client-type: bearer-only > Save
 
 * Open your browser at http://localhost:8080/chat-html-secured
 
