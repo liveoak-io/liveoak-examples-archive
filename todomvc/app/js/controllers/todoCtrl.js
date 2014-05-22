@@ -41,7 +41,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, todoStorage,
         $scope.displayName = profile.preferred_username;
     }
 
-    $scope.showAll = LiveOak.auth.hasResourceRole('admin');
+    $scope.showAll = LiveOak.auth.hasResourceRole('admin', 'todomvc');
 
     $scope.allChecked = false;
 
