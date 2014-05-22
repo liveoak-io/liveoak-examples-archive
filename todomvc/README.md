@@ -1,6 +1,6 @@
 # LiveOak AngularJS TodoMVC Example
 ===================================
-This example is based on the example http://todomvc.com/architecture-examples/angularjs/#/ . Our example is integrated with Keycloak and it's showing security possibilities of Keycloak (among other things).
+This example is based on the example http://todomvc.com/architecture-examples/angularjs/#/ . Our example is integrated with Keycloak and it's showing security possibilities of Liveoak (among other things).
 
 Steps to run the application
 ----------------------------
