@@ -1,80 +1,49 @@
-# AngularJS TodoMVC Example
-
-> HTML is great for declaring static documents, but it falters when we try to use it for declaring dynamic views in web-applications. AngularJS lets you extend HTML vocabulary for your application. The resulting environment is extraordinarily expressive, readable, and quick to develop.
-
-> _[AngularJS - angularjs.org](http://angularjs.org)_
-
-
-## Learning AngularJS
-The [AngularJS website](http://angularjs.org) is a great resource for getting started.
-
-Here are some links you may find helpful:
-
-* [Tutorial](http://docs.angularjs.org/tutorial)
-* [API Reference](http://docs.angularjs.org/api)
-* [Developer Guide](http://docs.angularjs.org/guide)
-* [Applications built with AngularJS](http://builtwith.angularjs.org)
-* [Blog](http://blog.angularjs.org)
-* [FAQ](http://docs.angularjs.org/misc/faq)
-* [AngularJS Meetups](http://www.youtube.com/angularjs)
-
-Articles and guides from the community:
-
-* [Code School AngularJS course](http://www.codeschool.com/code_tv/angularjs-part-1)
-* [5 Awesome AngularJS Features](http://net.tutsplus.com/tutorials/javascript-ajax/5-awesome-angularjs-features)
-* [Using Yeoman with AngularJS](http://briantford.com/blog/angular-yeoman.html)
-* [me&ngular - an introduction to MVW](http://stephenplusplus.github.io/meangular)
-
-Get help from other AngularJS users:
-
-* [Walkthroughs and Tutorials on YouTube](http://www.youtube.com/playlist?list=PL1w1q3fL4pmgqpzb-XhG7Clgi67d_OHXz)
-* [Google Groups mailing list](https://groups.google.com/forum/?fromgroups#!forum/angular)
-* [angularjs on Stack Overflow](http://stackoverflow.com/questions/tagged/angularjs)
-* [AngularJS on Twitter](https://twitter.com/angularjs)
-* [AngularjS on Google +](https://plus.google.com/+AngularJS/posts)
-
-_If you have other helpful links to share, or find any of the links above no longer work, please [let us know](https://github.com/tastejs/todomvc/issues)._
-
-Liveoak integration
-===================
-Current version of this todoMVC example demonstrates authorization possibilities of LiveOak project.
+# LiveOak AngularJS TodoMVC Example
+===================================
+This example is based on the example http://todomvc.com/architecture-examples/angularjs/#/ . Our example is integrated with Keycloak and it's showing security possibilities of Liveoak (among other things).
 
 Steps to run the application
 ----------------------------
-1. Clone LiveOak project ( https://github.com/liveoak-io/liveoak ) to some directory on your laptop and build it with "mvn clean install".
-You will need JDK8 to successfully build it.
+* Copy the example in the _apps_ directory and start Liveoak
 
-Next steps assume that you have LiveOak in directory: /tmp/liveoak
+	$ cp -r _liveoak examples_/todomvc _liveoak_/apps
 
-2. Clone directory with liveoak-examples from github. Next steps assume that you have them in /tmp/liveoak-examples
+	$ sh _liveoak_/bin/standalone.sh
 
-3. Install and run MongoDB database on your host on port 27017. Then create database "liveoak" and collection "todos" in this database.
+* Add the application in keycloak (Manual step currently required)
 
-4. Run 'todomvc' example via CMD:
-$cd /tmp/liveoak
-$./launcher/bin/liveoak /tmp/liveoak-examples/todomvc
+ * Go to http://localhost:8080/auth/admin/index.html#/realms/liveoak-apps/applications
+ * Add Application (or edit application "todomvc" if it already exists)
+   * Name: "todomvc"
+   * client-type: "public"
+   * Redirect URI: "http://localhost:8080/todomvc/*" (click button "Add")
+   * Base URL: "http://localhost:8080/todomvc"
+   * Admin URL: "http://localhost:8080/todomvc"
+   * Web Origins: "http://localhost:8080" (click button "Add")
+ * Finally click "Save"
 
-5. After successful boot, let's open your browser and go to http://localhost:8080/todomvc/app/index.html . You will be redirected to Keycloak login console.
-Now you can either register new account or try one of predefined ones. Predefined accounts are defined in keycloak-config.json file (See keycloak documentation for more details). So right now there is:
-- User "bob" with password "password"
-- User "john" with password "password"
-- User "mary" with password "password"
+* Create roles for newly created application (Manual step required)
+  * Go to http://localhost:8080/auth/admin/liveoak-admin/console/index.html#/realms/liveoak-apps/applications/todomvc/roles
+  * Add Role > Role name: "admin" > Click "Save"
+  * Repeat the same and add also role "user"
+  * When you open http://localhost:8080/auth/admin/liveoak-admin/console/index.html#/realms/liveoak-apps/applications/todomvc/roles you should see 2 roles: "admin" and "user"
+  * Role names are important, because authorization is configured to deal with those 2 roles.
 
-6. Authorization rules of todoMVC application:
-- User "john" has role "user". He is able to see list of his own todos and he is able to create new todos for himself and also update or delete his own todos.
-He is not able to see todos of different users and/or create,update or delete todos of different user. He is also not able to change ownership of his todos to different user.
+* Create some default users for testing purposes (their names and default passwords are not important, feel free to use different names):
+  * Go to http://localhost:8080/auth/admin/liveoak-admin/console/index.html#/realms/liveoak-apps/users
+  * Add User > username: "bob" > Save
+  * Then open http://localhost:8080/auth/admin/liveoak-admin/console/index.html#/realms/liveoak-apps/users/bob/user-credentials and fill some initial password for user "bob". Note that bob will need to change this default password when he try to login for the first time.
+  * Then open http://localhost:8080/auth/admin/liveoak-admin/console/index.html#/realms/liveoak-apps/users/bob/role-mappings and select application "todomvc" and move both available roles "admin" and "user" to the assigned roles. This means that bob will be both "admin" and "user" .
+  * Repeat the steps and create another user "john", but assign him just to role "user"
+  * Repeat the steps again and create last user "mary" and don't assign her to any role
 
-- User "bob" has roles "admin" and "user". He is able to do everything (create/update/remove todos for him or for any other user. He can see todos of all users)
+* Open your browser at http://localhost:8080/todomvc
 
-- User "mary" hasn't any role and so she is not able to do anything (read or create any todo including her own todos)
+Users
+-----
+- User 'bob' with password 'password' is admin and can do anything. He can create new todos, but he also automatically see todos of all users and he can update or delete them
 
-Self-registered users will automatically have role "user" as this is auto-registration role. Hence they have same privileges as "john" user
+- User 'mary' with password 'password' doesn't have any roles and she can't do anything. She can't create new todos and also she can't see any todos. Basically mary can't do anything.
+You will receive authorization error directly after login as mary.
 
-7. "Attack" part of the page allows to play a bit with authorization. In "attack" mode, you can request to see all todos (only admin has permission for it),
-you can skip sending Authorization header in ajax HTTP requests to storage resource (All requests will result in 401 error)
- or you can select different user, so that you can try to See todos of different user and create/update todos for this user (Only admin has permission for it)
-
-8. You can visit: http://localhost:8383/auth/admin to see Keycloak admin console. You can login as admin/admin and then you can edit "default" realm and do something with it (create new roles, users etc.)
-
-9. Keycloak is using embedded H2 DB by default. To enforce deleting it and start from scratch, you can run:
-$rm /tmp/keycloak.db*
+- User 'john' with password 'password' is normal user. He can create new todos and he can view his own todos and update or delete them, but he can't read, update or delete todos that weren't created by himself.
