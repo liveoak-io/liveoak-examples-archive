@@ -8,7 +8,7 @@ Start LiveOak
 
 Start LiveOak bound to an IP address available to the phone or emulator. For example:
 
-    liveoak -b 192.168.0.10 <LIVEOAK EXAMPLES>/todomvc-cordova
+    liveoak -b 10.0.0.140 <LIVEOAK EXAMPLES>/todomvc-cordova
 
 Edit 'www/index.html' and change the URL for 'liveoak.js'.
 

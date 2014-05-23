@@ -12,8 +12,8 @@ var todomvc = angular.module('todomvc', [ 'ngRoute', 'ngResource' ]);
 var init = function () {
     var liveOak = LiveOak({
         auth: {
-            realm: 'todomvc-cordova',
-            clientId: 'todomvc'
+            realm: 'liveoak-apps',
+            clientId: 'todomvc-cordova-client'
         }
     });
 

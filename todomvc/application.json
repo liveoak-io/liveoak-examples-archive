@@ -62,27 +62,17 @@
           {
             uriPattern: "*",
             requestTypes: [ "*" ],
-            allowedRoles: [ "todomvc/admin" ]
-          },
-          {
-            uriPattern: "/todomvc",
-            requestTypes: [ "READ" ],
-            allowedUsers: [ "*" ]
-          },
-          {
-            uriPattern: "/todomvc/app*",
-            requestTypes: [ "READ" ],
-            allowedUsers: [ "*" ]
-          },
-          {
-            uriPattern: "/todomvc/client*",
-            requestTypes: [ "READ" ],
             allowedUsers: [ "*" ]
           },
           {
             uriPattern: "/todomvc/storage/todos",
             requestTypes: [ "CREATE", "READ" ],
-            allowedRoles: [ "todomvc/user" ]
+            allowedRoles: [ "todomvc/user", "todomvc/admin" ]
+          },
+          {
+            uriPattern: "/todomvc/storage/todos/*",
+            requestTypes: [ "READ", "UPDATE", "DELETE" ],
+            allowedRoles: [ "todomvc/admin" ]
           }
         ]
       }
@@ -91,7 +81,7 @@
     storage: {
       type: 'mongo',
       config: {
-        db: 'liveoak',
+        db: 'todomvc',
         servers: [
           {
             host: 'localhost',
