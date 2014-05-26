@@ -27,3 +27,5 @@ Running
 
 Whenever you change web application in www/ simply rerun the last command, to rebuild it as native Android app.
 
+See detailed documentation [here](http://liveoak.io/docs/guides/tutorial_gallery/#gallery-for-android-using-cordova) .
+
