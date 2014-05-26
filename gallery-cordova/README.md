@@ -4,8 +4,8 @@ Gallery Cordova Android Example
 This demo application runs as a native application on a mobile device or emulator. It connects remotely to LiveOak endpoints provided by 'gallery' example application.
 
 
-Running
--------
+Installing the application
+--------------------------
 
 * Run Gallery application on LiveOak as described in Gallery Example README.md
 
@@ -16,15 +16,22 @@ Running
 
 * Set up Cordova native Android project:
 
-    mkdir platforms plugins
-    cordova plugin add org.apache.cordova.inappbrowser
-    cordova plugin add org.apache.cordova.camera
-    cordova plugin add org.apache.cordova.file
-    cordova platform add android
+```shell
+$ mkdir platforms plugins
+$ cordova plugin add org.apache.cordova.inappbrowser
+$ cordova plugin add org.apache.cordova.camera
+$ cordova plugin add org.apache.cordova.file
+$ cordova platform add android
+````
+
+Running the application
+-----------------------
 
 * Build native application from web app, and run it:
 
-    $ cordova run android
+```shell
+$ cordova run android
+````
 
 Whenever you change web application in www/ simply rerun the last command, to rebuild it as native Android app.
 

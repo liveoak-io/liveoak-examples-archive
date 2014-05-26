@@ -12,7 +12,7 @@ Assumption is that:
 So then copy the example in the _apps_ directory of your Liveoak server and start the server
 ```shell
 $ cp -r $LIVEOAK_EXAMPLES/todomvc $LIVEOAK/apps
-$ sh $LIVEOAK/bin/standalone.sh
+$ sh $LIVEOAK/bin/standalone.sh -b 0.0.0.0
 ````
 
 Setup the application
@@ -34,7 +34,8 @@ Setup the application
     * Scope: select both "admin" and "user" scopes (if you can't add scopes for the first time, let's create client without scopes and then edit it later and add scopes)
    * Finally click "Save"
 
-* Create some default users for testing purposes (their names and default passwords are not important, feel free to use different names). This step is not mandatory as you can automatically register users on the login screen:
+* Create some default users for testing purposes (their names and default passwords are not important, feel free to use different names). This step is not mandatory as you can automatically register users later on the login screen of the application.
+But it's useful as self-registered users always have just default roles (in our case role "user"), so you can't test all the authorization possibilities when all users have just same role "user" .
   * Go to [http://localhost:8080/auth/admin/liveoak-admin/console/index.html#/realms/liveoak-apps/users](http://localhost:8080/auth/admin/liveoak-admin/console/index.html#/realms/liveoak-apps/users)
   * Add User > username: "bob" > Save
   * Then open [http://localhost:8080/auth/admin/liveoak-admin/console/index.html#/realms/liveoak-apps/users/bob/user-credentials](http://localhost:8080/auth/admin/liveoak-admin/console/index.html#/realms/liveoak-apps/users/bob/user-credentials) and fill some initial password for user "bob". Note that bob will need to change this default password when he try to login for the first time.
@@ -45,7 +46,7 @@ Setup the application
 * Create new collection in MongoDB (Manual step currently required)
   * Go to [http://localhost:8080/admin#/applications/todomvc/storage/storage/browse](http://localhost:8080/admin#/applications/todomvc/storage/storage/browse)
   * Click "New collection" > Fill collection name "todos" (name is important as it's used by the application) > Click "Add"
-  * This step is not mandatory because in case that you first login as some admin user (in our case user "bob"), collection will be automatically created during first access to application. In case that you're using just self-registered users, it will be needed.
+  * This step is not mandatory because in case that you first login as some admin user (in our case user "bob"), collection will be automatically created during first access to application. But in case that you're using just self-registered users, it will be needed.
 
 
 Running the application
