@@ -28,7 +28,7 @@ var init = function () {
     liveOak.auth.init('login-required').success(function () {
         if (liveOak.auth.hasResourceRole('admin', 'todomvc')) {
             liveOak.connect(function () {
-                liveOak.create('/todomvc-cordova/storage', { id: 'todos' }, {
+                liveOak.create('/todomvc/storage', { id: 'todos' }, {
                     success: function (data) {
                     },
                     error: function (data) {
