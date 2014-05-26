@@ -52,19 +52,14 @@
       config: {
         rules: [
           {
-            uriPattern: "/todomvc-cordova",
-            requestTypes: [ "READ" ],
+            uriPattern: "*",
+            requestTypes: [ "*" ],
             allowedUsers: [ "*" ]
           },
           {
-            uriPattern: "/todomvc-cordova/app*",
-            requestTypes: [ "READ" ],
-            allowedUsers: [ "*" ]
-          },
-          {
-            uriPattern: "/todomvc-cordova/client*",
-            requestTypes: [ "READ" ],
-            allowedUsers: [ "*" ]
+            uriPattern: "/todomvc-cordova/storage/todos",
+            requestTypes: [ "UPDATE" ],
+            allowedRoles: [ "todomvc-cordova/admin" ]
           },
           {
             uriPattern: "/todomvc-cordova/storage/todos",
