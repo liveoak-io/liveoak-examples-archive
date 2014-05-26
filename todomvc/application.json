@@ -66,6 +66,11 @@
           },
           {
             uriPattern: "/todomvc/storage/todos",
+            requestTypes: [ "UPDATE" ],
+            allowedRoles: [ "todomvc/admin" ]
+          },
+          {
+            uriPattern: "/todomvc/storage/todos",
             requestTypes: [ "CREATE", "READ" ],
             allowedRoles: [ "todomvc/user", "todomvc/admin" ]
           },
