@@ -34,7 +34,7 @@ Steps to run the application
   * Repeat the steps and create another user "john", but assign him just to role "user"
   * Repeat the steps again and create last user "mary" and don't assign her to any role
 
-* Open your browser at [a link](http://localhost:8080/todomvc)
+* Open your browser at [http://localhost:8080/todomvc](http://localhost:8080/todomvc)
 
 Users
 -----
