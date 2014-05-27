@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Liveoak authentication example</title>
-    <script src="/auth/client/liveoak.js" type="text/javascript"></script>
+    <script src="/auth-html/client/liveoak.js" type="text/javascript"></script>
     <style>
         pre {
             display: inline-block; border: 1px solid #ccc; padding: 1em; background-color: #eee
@@ -22,7 +22,7 @@
 </div>
 <script>
     var invokeStorage = function () {
-        liveOak.read('/auth/storage', { success: function (data) {
+        liveOak.read('/auth-html/storage', { success: function (data) {
             document.getElementById('storage').innerHTML = 'Success:<br/><pre>' + JSON.stringify(data, null, '    ') + '</pre>'
         }, error: function (data) {
             document.getElementById('storage').innerHTML = 'Error:<br/><pre>' + JSON.stringify(data, null, '    ') + '</pre>'
@@ -50,8 +50,6 @@
                 + '<pre>' + JSON.stringify(liveOak.auth.idToken, undefined, 4) + '</pre>';
 
         document.getElementById('content').innerHTML = content;
-
-        //liveOak.auth.getUserProfile({ success: authProfileLoaded, error: authProfileLoadedError });
     }
 
     var authError = function (errorDetails) {
@@ -81,7 +79,7 @@
 
     var liveOak = LiveOak({
         auth: {
-            clientId: 'auth',
+            clientId: 'auth-html-client',
             realm: 'liveoak-apps'
         }
     });

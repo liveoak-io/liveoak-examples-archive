@@ -25,7 +25,7 @@
         "policies": [
           {
             "policyName" : "URIPolicy",
-            "policyResourceEndpoint": "/auth/uri-policy/authzCheck"
+            "policyResourceEndpoint": "/auth-html/uri-policy/authzCheck"
           }
         ]
       }
@@ -36,24 +36,14 @@
       config: {
         "rules": [
           {
-            "uriPattern": "/auth",
-            "requestTypes": [ "READ" ],
-            "allowedUsers": [ "*" ]
+            uriPattern: "*",
+            requestTypes: [ "*" ],
+            allowedUsers: [ "*" ]
           },
           {
-            "uriPattern": "/auth/app/index.html",
+            "uriPattern": "/auth-html/storage*",
             "requestTypes": [ "READ" ],
-            "allowedUsers": [ "*" ]
-          },
-          {
-            "uriPattern": "/auth/client*",
-            "requestTypes": [ "*" ],
-            "allowedUsers": [ "*" ]
-          },
-          {
-            "uriPattern": "/auth/storage*",
-            "requestTypes": [ "READ" ],
-            "allowedRoles": [ "auth/user" ]
+            "allowedRoles": [ "auth-html/user" ]
           }
         ]
       }
@@ -62,7 +52,7 @@
     storage: {
       type: 'mongo',
       config: {
-        db: 'liveoak',
+        db: 'auth-html',
         servers: [
           {
             host: 'localhost',
