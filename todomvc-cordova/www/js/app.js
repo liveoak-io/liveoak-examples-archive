@@ -25,7 +25,7 @@ var init = function () {
         window.open('', '_self');
     }
 
-    liveOak.auth.init('login-required').success(function () {
+    liveOak.auth.init({ onLoad: 'login-required' }).success(function () {
         if (liveOak.auth.hasResourceRole('admin', 'todomvc')) {
             liveOak.connect(function () {
                 liveOak.create('/todomvc/storage', { id: 'todos' }, {

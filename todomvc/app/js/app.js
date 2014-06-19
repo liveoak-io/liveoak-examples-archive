@@ -17,7 +17,7 @@ angular.element(document).ready(function () {
         }
     });
 
-    liveOak.auth.init('login-required').success(function () {
+    liveOak.auth.init({ onLoad: 'login-required' }).success(function () {
         if (liveOak.auth.hasResourceRole('admin', 'todomvc')) {
             liveOak.create('/todomvc/storage', { id: 'todos' }, {
                 success: function (data) {

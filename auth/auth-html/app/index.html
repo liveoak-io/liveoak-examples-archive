@@ -87,7 +87,7 @@
     liveOak.auth.onAuthSuccess = authSuccess;
     liveOak.auth.onAuthError = authError;
 
-    liveOak.auth.init('check-sso').success(function() {
+    liveOak.auth.init({ onLoad: 'check-sso' }).success(function() {
         document.getElementById('container').style.display = 'block';
     });
 
