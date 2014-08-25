@@ -371,9 +371,9 @@ window.oauth = (function () {
     }
 
     this.readMembers = function (path, options) {
-        var url = createUrl(path, { expand: '*',  query: options.query, sort: options.sort });
+        var url = createUrl(path, { fields: '*(*)',  query: options.query, sort: options.sort });
         request('GET', url, null, function (data) {
-            var members = data._members || [];
+            var members = data.members || [];
             options.success(members);
         }, options.error);
     }
@@ -481,7 +481,7 @@ window.oauth = (function () {
 
     var jsonReplacer = function (key, value) {
         switch (key) {
-            case '_members': return undefined;
+            case 'members': return undefined;
             case 'self': return undefined;
             default: return value;
         }

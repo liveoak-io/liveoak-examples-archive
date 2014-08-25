@@ -167,7 +167,7 @@ Galleria.ready(function () {
 
   // get current list of files from gridfs
   request('GET', DRIVE_ROOT + '?fields=*(*)', null, function (response) {
-    var items = response._members || [];
+    var items = response.members || [];
     items.forEach(function (item) {
       // add thumbnail
       resize(DRIVE_ROOT + '/' + item.filename, function(dataUrl) {
