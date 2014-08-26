@@ -1,0 +1,8 @@
+{
+  "libraries" : [ "client" ],
+  "name" : "Useragent Script",
+  "target-path" : "/useragentsscript/app/**",
+  "description" : "This script stores the useragents of clients accessing the site.",
+  "enabled" : true,
+  "priority" : 1
+}
