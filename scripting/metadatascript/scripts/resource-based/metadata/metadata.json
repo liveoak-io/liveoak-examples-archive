@@ -1,0 +1,8 @@
+{
+  "libraries" : [ "client" ],
+  "name" : "Metadata Script",
+  "description" : "Script which adds metadata about who created or edited a document in storage",
+  "target-path" : "/metadatascript/storage/**",
+  "enabled" : true,
+  "priority" : 1
+}

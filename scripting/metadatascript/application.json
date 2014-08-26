@@ -1,0 +1,66 @@
+{
+  "id" : "metadatascript",
+  "name" : "metadatascript",
+  "resources" : {
+    "client" : {
+      "type" : "aggregating-filesystem",
+      "config" : {
+        "directory" : "/home/mwringe/Projects-2/liveoak/dist/target/liveoak/client"
+      }
+    },
+    "auth" : {
+      "type" : "keycloak",
+      "config" : { }
+    },
+    "authz" : {
+      "type" : "security",
+      "config" : {
+        "policies" : [ {
+          "policyName" : "URIPolicy",
+          "policyResourceEndpoint" : "/metadatascript/uri-policy/authzCheck"
+        }, {
+          "policyName" : "ACLPolicy",
+          "policyResourceEndpoint" : "/metadatascript/acl-policy/authzCheck",
+          "includedResourcePrefixes" : [ "/metadatascript" ]
+        } ]
+      }
+    },
+    "uri-policy" : {
+      "type" : "uri-policy",
+      "config" : {
+        "rules" : [ {
+          "uriPattern" : "*",
+          "requestTypes" : [ "*" ],
+          "allowedUsers" : [ "*" ]
+        } ]
+      }
+    },
+    "acl-policy" : {
+      "type" : "acl-policy",
+      "config" : {
+        "autoRules" : [ ]
+      }
+    },
+    "storage" : {
+      "type" : "mongo",
+      "config" : {
+        "db" : "LiveOakExamples-MetadataScript",
+        "servers" : [ {
+          "host" : "localhost",
+          "port" : 27017
+        } ],
+        "credentials" : [ ]
+      }
+    },
+    "scripts" : {
+      "type" : "scripts",
+      "config" : {
+        "script-directory" : "${application.dir}/scripts"
+      }
+    },
+    "application-clients" : {
+      "type" : "application-clients",
+      "config" : { }
+    }
+  }
+}
