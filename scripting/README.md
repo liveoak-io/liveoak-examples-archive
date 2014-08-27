@@ -11,5 +11,6 @@ There are currently 4 basic scripting examples. All 4 of these examples are base
  
 * useragentscript: example to show accessing other liveoak resources using the client
 
+* ephemeralscript: example to show how to delete entries using the client and restrict editing storage entries
 
 Please see the README.md for each example for more information.
