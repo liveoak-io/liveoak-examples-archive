@@ -1,7 +1,7 @@
 LiveOak MetaDataScript Example
 ==============================
 
-The HelloScript example will add _'last-modified'_ metadata to any resource being created or modified into the LiveOak Storage. The script will also remove the metadata when returning a result to a user not having the _'admin'_ role.
+The MetaDataScript example will add _'last-modified'_ metadata to any resource being created or modified into the LiveOak Storage. The script will also remove the metadata when returning a result to a user not having the _'admin'_ role.
 
 Features
 --------
