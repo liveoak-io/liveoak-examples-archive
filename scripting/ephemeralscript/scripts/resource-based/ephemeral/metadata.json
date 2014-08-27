@@ -1,0 +1,8 @@
+{
+  "libraries" : [ "client" ],
+  "name" : "Ephemeral Script",
+  "description" : "Script which makes content in the 'ephemeral' collection only readable once and then deletes it.",
+  "target-path" : "/ephemeralscript/storage/ephemeral/*",
+  "enabled" : true,
+  "priority" : 1
+}
