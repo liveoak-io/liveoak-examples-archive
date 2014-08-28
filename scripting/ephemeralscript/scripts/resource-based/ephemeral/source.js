@@ -28,7 +28,7 @@ function postRead(response, libraries) {
     }
 
     var client = libraries.client;
-    client.remove(response.resource.uri);   
+    client.delete(response.resource.uri); 
 }
 
 function preCreate(request, libraries) {
