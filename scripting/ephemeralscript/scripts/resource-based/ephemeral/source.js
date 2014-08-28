@@ -39,5 +39,5 @@ function preCreate(request, libraries) {
 
 // Disable update support on this type of resource.
 function preUpdate(request, libraries) {
-    return new UpdateNotSupportedError("The ephemeral collection does not support updating");
+    return new liveoak.UpdateNotSupportedError("The ephemeral collection does not support updating");
 }
