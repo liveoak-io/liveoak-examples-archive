@@ -26,10 +26,10 @@ Setup the application
   * Add Client
     * Name: "todomvc-cordova-client"
     * Platform: Android
-    * Redirect URI: "http://localhost" (click button "Add")
-    * Web origin: "http://localhost" (click button "Add")
-    * Scope: select both "admin" and "user" scopes (if you can't add scopes for the first time, let's create client without scopes and then edit it later and add scopes)
-   * Finally click "Save"
+    * Redirect URI: "http://localhost"
+    * Web origin: "http://localhost"
+    * Scope: select both "admin" and "user" scopes
+    * Finally click "Save"
 
 Running the application
 -----------------------
