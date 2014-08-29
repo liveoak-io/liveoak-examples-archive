@@ -11,7 +11,7 @@
     "client" : {
       "type" : "aggregating-filesystem",
       "config" : {
-        "directory" : "/home/mwringe/Projects-2/liveoak/dist/target/liveoak/client"
+        "directory" : "${io.liveoak.js.dir}"
       }
     },
     "auth" : {
