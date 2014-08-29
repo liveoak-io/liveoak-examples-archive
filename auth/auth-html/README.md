@@ -7,11 +7,20 @@ Storage request will be successful just in case that you are authenticated.
 Installing the application
 --------------------------
 
-Assumption is that:
-* $LIVEOAK points to directory with your Liveoak server
-* $LIVEOAK_EXAMPLES points to directory with Liveoak examples
+There are two ways that this example may be installed.
 
-So then copy the example in the _apps_ directory of your Liveoak server and start the server
+### Admin Console:
+
+1. Click "Install Example Application" button, or "Try example applications" link from "Applications" page if you already have applications installed.
+2. Click the "Auth" example and then click "Install".
+
+### Manually:
+
+Assumption is that:
+* $LIVEOAK points to a directory with your Liveoak server
+* $LIVEOAK_EXAMPLES points to a directory with Liveoak examples
+
+Copy the example into the _apps_ directory of your Liveoak server and start the server
 ```shell
 $ cp -r $LIVEOAK_EXAMPLES/auth/auth-html $LIVEOAK/apps
 $ sh $LIVEOAK/bin/standalone.sh
@@ -22,18 +31,17 @@ Setup the application
 
 * Create roles for your application (Manual step required)
   * Go to [http://localhost:8080/admin](http://localhost:8080/admin) and login as user "admin" with password "admin"
-  * Go to [http://localhost:8080/admin#/applications/auth-html/application-settings](http://localhost:8080/admin#/applications/auth-html/application-settings) and add new role "user". Then you can also select "user" to be default role > Click "Save"
+  * Go to [http://localhost:8080/admin#/applications/auth-html/security/roles](http://localhost:8080/admin#/applications/auth-html/security/roles) and add new role "user". Then you can also select "user" to be default role by selecting the tick
 
 * Add HTML client for newly created application (Manual step currently required)
-
   * Go to [http://localhost:8080/admin#/applications/auth-html/application-clients](http://localhost:8080/admin#/applications/auth-html/application-clients)
-  * Add Client
+  * Click "New Client"
     * Name: "auth-html-client"
-    * Platform: HTML-5
-    * Redirect URI: "http://localhost:8080/auth-html/*" (click button "Add")
-    * Web Origins: "http://localhost:8080" (click button "Add")
-    * Scope: select "user" scope (if you can't add scopes for the first time, let's create client without scopes and then edit it later and add scopes)
-   * Finally click "Save"
+    * Platform: HTML5
+    * Redirect URI: "http://localhost:8080/auth-html/*"
+    * Web Origins: "http://localhost:8080"
+    * Scope: select "user" scope
+    * Finally click "Save"
 
 Running the application
 -----------------------
