@@ -8,7 +8,7 @@ Installing the application
 
 * Run Todomvc application on LiveOak and setup it as described in Todomvc Example README.md
 
-* Edit 'www/index.html' and change the URL for 'liveoak.js' . You need to change host and replace it with real INET_ADDRESS of your host where Liveoak with TodoMVC deployed is running. Currently it is set to 192.168.2.7 which corresponds to a localhost running an Android emulator.
+* Edit 'www/index.html' and change the URL for 'liveoak.js' . You need to change host and replace it with real INET_ADDRESS of your host where LiveOak with TodoMVC deployed is running. Currently it is set to 192.168.2.7 which corresponds to a localhost running an Android emulator.
 
 * Set up Cordova native Android project:
 

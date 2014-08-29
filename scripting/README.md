@@ -8,8 +8,8 @@ There are currently 4 basic scripting examples. All 4 of these examples are base
 * formatscript: example to enforce a specific structure when creating a new storage resource
 
 * metadatascript: example to modify incoming requests and outgoing responses
- 
-* useragentscript: example to show accessing other liveoak resources using the client
+
+* useragentscript: example to show accessing other LiveOak resources using the client
 
 * ephemeralscript: example to show how to delete entries using the client and restrict editing storage entries
 
