@@ -7,11 +7,20 @@ This demo application runs in desktop, and mobile browser, and also provides RES
 Installing the application
 --------------------------
 
-Assumption is that:
-* $LIVEOAK points to directory with your Liveoak server
-* $LIVEOAK_EXAMPLES points to directory with Liveoak examples
+There are two ways that this example may be installed.
 
-So then copy the example in the _apps_ directory of your Liveoak server and start the server
+### Admin Console:
+
+1. Click "Install Example Application" button, or "Try example applications" link from "Applications" page if you already have applications installed.
+2. Click the "Gallery" example and then click "Install".
+
+### Manually:
+
+Assumption is that:
+* $LIVEOAK points to the directory with your Liveoak server
+* $LIVEOAK_EXAMPLES points to the directory with Liveoak examples
+
+So then copy the example into the _apps_ directory of your Liveoak server and start the server
 ```shell
 $ cp -r $LIVEOAK_EXAMPLES/gallery $LIVEOAK/apps
 $ sh $LIVEOAK/bin/standalone.sh -b 0.0.0.0
@@ -27,5 +36,3 @@ Running the application
 (where INET_ADDRESS is your local network address that can be determined by using 'ifconfig' from shell)
 
 See detailed documentation [here](http://liveoak.io/docs/guides/tutorial_gallery/#gallery-web-application) .
-
-
