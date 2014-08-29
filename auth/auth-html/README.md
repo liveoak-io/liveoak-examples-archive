@@ -17,8 +17,8 @@ There are two ways that this example may be installed.
 ### Manually:
 
 Assumption is that:
-* $LIVEOAK points to a directory with your Liveoak server
-* $LIVEOAK_EXAMPLES points to a directory with Liveoak examples
+* $LIVEOAK points to the directory with your Liveoak server
+* $LIVEOAK_EXAMPLES points to the directory with Liveoak examples
 
 Copy the example into the _apps_ directory of your Liveoak server and start the server
 ```shell
