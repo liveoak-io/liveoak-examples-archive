@@ -1,8 +1,0 @@
-{
-  "libraries" : [ "client" ],
-  "name" : "Product format enforcer script",
-  "description" : "Script which enforces that a product being added to the database is properly formatted",
-  "target-path" : "/formatscript/storage/products/*",
-  "enabled" : true,
-  "priority" : 1
-}
